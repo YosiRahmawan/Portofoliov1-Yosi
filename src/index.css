@@ -5,7 +5,7 @@
   --color-white: #f7f7f8;
   --color-blue: #2563eb;
   --color-sky: #7dd3fc;
-  --color-navy: #0c3a7f; /* latar foto hero, agar tepi foto menyatu */
+  --color-ink: #011433; /* warna tepi kiri foto hero, agar bingkai foto menyatu dengan latar */
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
@@ -67,10 +67,26 @@ body {
   .arc-ring { animation: none; opacity: 0; }
 }
 
-/* Tepi kiri/kanan foto hero memudar ke latar saat foto lebih sempit dari layar */
+/* Latar hero: biru gelap sama dengan tepi foto, dengan sisa cahaya biru di kanan seperti di foto */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 34% 62% at 79% 30%, color-mix(in srgb, var(--color-blue) 78%, var(--color-ink)) 0%, color-mix(in srgb, var(--color-blue) 40%, var(--color-ink)) 40%, transparent 78%),
+    var(--color-ink);
+}
+
+/* Bingkai foto: penuh di HP; di md ke atas selebar foto (3:4), wajah di ~62% layar, tepi kiri/kanan memudar ke latar biru gelap */
+.hero-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
 @media (min-width: 768px) {
   .hero-frame {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+    --h: max(100svh, 640px);
+    inset-inline: auto;
+    width: calc(var(--h) * 0.7512);
+    left: calc(62% - var(--h) * 0.3756);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.1) 3%, rgb(0 0 0 / 0.35) 7%, rgb(0 0 0 / 0.7) 11%, #000 15%, #000 66%, rgb(0 0 0 / 0.92) 71%, rgb(0 0 0 / 0.72) 76%, rgb(0 0 0 / 0.46) 82%, rgb(0 0 0 / 0.22) 88%, rgb(0 0 0 / 0.08) 94%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.1) 3%, rgb(0 0 0 / 0.35) 7%, rgb(0 0 0 / 0.7) 11%, #000 15%, #000 66%, rgb(0 0 0 / 0.92) 71%, rgb(0 0 0 / 0.72) 76%, rgb(0 0 0 / 0.46) 82%, rgb(0 0 0 / 0.22) 88%, rgb(0 0 0 / 0.08) 94%, transparent 100%);
   }
 }

@@ -15,12 +15,12 @@ export function Hero() {
   const wa = profile.whatsapp ? `https://wa.me/${profile.whatsapp}?text=Halo%20${profile.name}` : undefined
 
   return (
-    <section id="hero" className="relative isolate h-svh min-h-[640px] overflow-hidden bg-navy">
-      <div className="hero-frame absolute inset-0 overflow-hidden md:inset-y-0 md:right-[10%] md:left-auto md:aspect-[3/4]">
+    <section id="hero" className="relative isolate h-svh min-h-[640px] overflow-hidden hero-bg">
+      <div className="hero-kenburns hero-frame">
         <div
           role="img"
           aria-label={`Foto ${profile.name}`}
-          className={`hero-kenburns ${photo}`}
+          className={photo}
           style={{ backgroundImage: 'url(/images/hero-base.webp)' }}
         />
         <div

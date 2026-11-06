@@ -67,9 +67,9 @@ Aturan:
 ## Aksesibilitas
 Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar, target sentuh ≥ 44px, urutan heading logis (satu `h1`).
 
-## Hero (foto dengan sorot)
-- Dua foto bergambar sama: `public/images/hero-base.webp` (dasar, latar biru) dan `hero-reveal.webp` (versi cyber, latar transparan, wajah sudah disejajarkan dengan foto dasar).
-- Foto kedua hanya terlihat di dalam lingkaran sorot (mask `radial-gradient`, radius 260px, 160px di HP) yang mengikuti kursor dengan lerp 0.1. Posisi sorot lewat CSS variable `--mx/--my` (`useSpotlight`), tanpa render ulang React.
+## Hero (siluet dengan sorot)
+- Dua lapisan berukuran sama (1087x1447, rasio 3:4, tanpa perpanjangan buatan): `public/images/hero-base.webp` = foto siluet dengan cahaya biru dari belakang, `hero-reveal.webp` = foto berwarna, subjek dipotong dari latarnya dan disejajarkan ke wajah di siluet.
+- Foto berwarna hanya terlihat di dalam lingkaran sorot (mask `radial-gradient`, radius 260px, 160px di HP) yang mengikuti kursor dengan lerp 0.1. Posisi sorot lewat CSS variable `--mx/--my` (`useSpotlight`), tanpa render ulang React.
 - Layar sentuh: sorot melayang sendiri; reduced motion: sorot diam di tengah.
 - Busur statistik di kanan (`StatsArc`), angka dari `profile.stats`; disembunyikan di bawah 640px.
-- Mengganti foto: pertahankan rasio 3:4 dan sejajarkan mata/hidung kedua foto agar sorot tidak terlihat dobel.
+- Tepi kiri/kanan bingkai memudar ke latar hero (biru gelap, sama dengan tepi kiri foto). Jangan perpanjang bahu/latar secara buatan: pernah dicoba dan hasilnya aneh.
