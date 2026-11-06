@@ -20,7 +20,7 @@ export function Marquee() {
           </>,
         ]}
         velocity={55}
-        skewWithVelocity={8}
+        skewWithVelocity={24}
         pauseOnHover
         fontSize="clamp(1.5rem, 3vw, 2.5rem)"
         scrollerStyle={{ lineHeight: 1.3 }}

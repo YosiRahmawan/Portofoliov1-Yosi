@@ -196,14 +196,15 @@ function VelocityText({
     if (!skewWithVelocity && !scaleWithVelocity && skewX.get() === 0 && scaleY.get() === 1) return;
 
     const thrown = grab.active ? grab.velocity : fling.current;
-    const scrollSurge = Math.tanh(Math.abs(smoothVelocity.get()) / 1600) * pace.current;
+    // disetel peka: satu putaran roda mouse sudah memiringkan teks jelas (asli: 1600 dan 110)
+    const scrollSurge = Math.tanh(Math.abs(smoothVelocity.get()) / 450) * pace.current;
     const throwSurge = Math.tanh(Math.abs(thrown) / 2000);
     const surge = Math.max(scrollSurge, throwSurge);
     const heading =
       throwSurge > scrollSurge
         ? Math.sign(thrown)
         : Math.sign(travel) || directionFactor.current * Math.sign(baseVelocity);
-    const ease = 1 - Math.exp(-delta / 110);
+    const ease = 1 - Math.exp(-delta / 170);
     const nextSkew = skewX.get() + (-heading * skewWithVelocity * surge - skewX.get()) * ease;
     const nextScale = scaleY.get() + (1 + scaleWithVelocity * surge - scaleY.get()) * ease;
     skewX.set(Math.abs(nextSkew) < 0.01 && !skewWithVelocity ? 0 : nextSkew);
