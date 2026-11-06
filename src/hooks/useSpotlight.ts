@@ -1,0 +1,54 @@
+import { useEffect, type RefObject } from 'react'
+
+// Menggerakkan --mx/--my pada `layer` mengikuti kursor (lerp 0.1), relatif ke kotak `layer` sendiri.
+// Layar sentuh tidak punya kursor: sorot melayang sendiri, atau diam bila reduced motion.
+export function useSpotlight(layer: RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const target = layer.current
+    if (!target) return
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+    const coarse = matchMedia('(pointer: coarse)').matches
+    const rect = () => target.getBoundingClientRect()
+    const cur = coarse ? { x: rect().width * 0.5, y: rect().height * 0.45 } : { x: -999, y: -999 }
+    const goal = { ...cur }
+    let raf = 0
+
+    const onMove = (e: PointerEvent) => {
+      const r = rect()
+      goal.x = e.clientX - r.left
+      goal.y = e.clientY - r.top
+    }
+    const onLeave = () => {
+      goal.x = goal.y = -999
+    }
+    if (!coarse) {
+      window.addEventListener('pointermove', onMove)
+      document.documentElement.addEventListener('pointerleave', onLeave)
+    }
+
+    const tick = (t: number) => {
+      if (coarse && !reduce) {
+        const r = rect()
+        goal.x = r.width * (0.5 + 0.25 * Math.sin(t / 1800))
+        goal.y = r.height * (0.45 + 0.15 * Math.sin(t / 1300 + 1))
+      }
+      if (Math.abs(goal.x - cur.x) > 0.1 || Math.abs(goal.y - cur.y) > 0.1) {
+        cur.x += (goal.x - cur.x) * 0.1
+        cur.y += (goal.y - cur.y) * 0.1
+        target.style.setProperty('--mx', `${cur.x}px`)
+        target.style.setProperty('--my', `${cur.y}px`)
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    target.style.setProperty('--mx', `${cur.x}px`)
+    target.style.setProperty('--my', `${cur.y}px`)
+    raf = requestAnimationFrame(tick)
+
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('pointermove', onMove)
+      document.documentElement.removeEventListener('pointerleave', onLeave)
+    }
+  }, [layer])
+}

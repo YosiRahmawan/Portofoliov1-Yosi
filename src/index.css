@@ -5,6 +5,7 @@
   --color-white: #f7f7f8;
   --color-blue: #2563eb;
   --color-sky: #7dd3fc;
+  --color-navy: #0c3a7f; /* latar foto hero, agar tepi foto menyatu */
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
@@ -29,5 +30,47 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Hero: lapisan sorot memakai mask radial yang digerakkan --mx/--my (diset dari useSpotlight) */
+.hero-reveal {
+  --mx: -999px;
+  --my: -999px;
+  -webkit-mask-image: radial-gradient(circle 260px at var(--mx) var(--my), #000 0%, #000 40%, rgb(0 0 0 / 0.75) 60%, rgb(0 0 0 / 0.4) 75%, rgb(0 0 0 / 0.12) 88%, transparent 100%);
+  mask-image: radial-gradient(circle 260px at var(--mx) var(--my), #000 0%, #000 40%, rgb(0 0 0 / 0.75) 60%, rgb(0 0 0 / 0.4) 75%, rgb(0 0 0 / 0.12) 88%, transparent 100%);
+}
+@media (max-width: 640px) {
+  .hero-reveal {
+    -webkit-mask-image: radial-gradient(circle 160px at var(--mx) var(--my), #000 0%, #000 40%, rgb(0 0 0 / 0.75) 60%, rgb(0 0 0 / 0.4) 75%, rgb(0 0 0 / 0.12) 88%, transparent 100%);
+    mask-image: radial-gradient(circle 160px at var(--mx) var(--my), #000 0%, #000 40%, rgb(0 0 0 / 0.75) 60%, rgb(0 0 0 / 0.4) 75%, rgb(0 0 0 / 0.12) 88%, transparent 100%);
+  }
+}
+
+@keyframes kenBurns { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes popIn { 0% { transform: scale(0.4); opacity: 0; } 60% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes pulseRing { 0% { transform: scale(1); opacity: 0.35; } 100% { transform: scale(1.45); opacity: 0; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.hero-kenburns { animation: kenBurns 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.hero-rise { opacity: 0; animation: rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.arc-line { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) var(--d) forwards; }
+.arc-dot { opacity: 0; transform-box: fill-box; transform-origin: center; animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d) forwards; }
+.arc-ring { opacity: 0; transform-box: fill-box; transform-origin: center; animation: pulseRing 2.8s ease-in-out var(--d) infinite; }
+.arc-text { opacity: 0; animation: fadeIn 0.7s ease-out var(--d) forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns, .hero-rise, .arc-dot, .arc-text { animation: none; opacity: 1; transform: none; filter: none; }
+  .arc-line { animation: none; stroke-dashoffset: 0; }
+  .arc-ring { animation: none; opacity: 0; }
+}
+
+/* Tepi kiri/kanan foto hero memudar ke latar saat foto lebih sempit dari layar */
+@media (min-width: 768px) {
+  .hero-frame {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
   }
 }

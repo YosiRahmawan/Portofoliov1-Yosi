@@ -18,4 +18,10 @@ export const profile = {
   location: '',
   skillGroups,
   skills: Object.values(skillGroups).flat(),
+  // angka di busur statistik hero
+  stats: [
+    { value: String(Object.values(skillGroups).flat().length), suffix: '+', label: 'SKILLS' },
+    { value: '2', suffix: '', label: 'MAGANG' },
+    { value: '5', suffix: '', label: 'SEMESTER' },
+  ],
 }
