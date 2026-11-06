@@ -24,6 +24,13 @@ export const profile = {
     { label: 'WhatsApp', value: '+62 882002838322' },
     { label: 'Location', value: '' },
   ],
+  // teks di kartu ID 3D (bagian Contact)
+  idCard: {
+    band: 'JUNIOR DEVELOPER',
+    title: 'Junior Developer',
+    line: 'UBSI Tasikmalaya',
+    tag: 'UI/UX · Web · Mobile',
+  },
   // nomor format internasional tanpa +; kosong = tombol nonaktif
   whatsapp: '62882002838322',
   // opsional; kosong = tidak ditampilkan di CV

@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { profile } from '../../data/profile'
+import { makeIdCardFace } from '../../lib/idCardFace'
 import { socials } from '../../data/socials'
 import { useReveal } from '../../hooks/useReveal'
 import { ContactForm } from '../ui/ContactForm'
@@ -26,14 +27,19 @@ export function Contact() {
   const cardRef = useRef<HTMLDivElement>(null)
   useReveal(ref)
   const near = useNearViewport(cardRef)
+  const [face, setFace] = useState<string>()
+  useEffect(() => {
+    if (near && !face) makeIdCardFace().then(setFace, () => setFace(profile.photo))
+  }, [near, face])
 
   return (
     <section ref={ref} id="contact" aria-labelledby="contact-title" className="overflow-hidden bg-blue px-4 py-16 sm:px-8 md:py-24">
       <div className="mx-auto grid max-w-[1200px] items-center gap-10 md:grid-cols-2">
         <div ref={cardRef} className="relative h-[420px] md:h-[600px]" aria-hidden>
-          {near && (
+          {near && face && (
             <Suspense fallback={null}>
-              <Lanyard frontImage={profile.photo} className="absolute inset-0" />
+              {/* kanvas naik sampai tepi atas section (setara padding py-16/md:py-24) agar tali tergantung dari atas */}
+              <Lanyard frontImage={face} backImage={face} size={0.7} strapLength={0.3} strapWidth={0.45} className="absolute inset-x-0 bottom-0 -top-16 md:-top-24" />
             </Suspense>
           )}
         </div>

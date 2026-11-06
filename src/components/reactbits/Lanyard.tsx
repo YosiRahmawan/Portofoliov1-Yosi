@@ -163,7 +163,7 @@ interface Press {
 }
 
 const CARD_SIZES: Record<string, [number, number]> = {
-  portrait: [1.6, 2.25],
+  portrait: [1.45, 2.35],
   landscape: [2.25, 1.6]
 };
 const ANCHORS: Record<string, number> = { left: 0.27, center: 0.5, right: 0.73 };
@@ -176,8 +176,8 @@ const ITERATIONS = 2;
 const SAMPLES = 72;
 const FOV = 24;
 const STRAP_WIDTH = 0.36;
-const RING_RADIUS = 0.11;
-const RING_TUBE = 0.0135;
+const RING_RADIUS = 0.12;
+const RING_TUBE = 0.017;
 const EYELET_RADIUS = 0.036;
 const CLAMP_BODY = 0.15;
 const FACE_WIDTH = 1024;
@@ -374,12 +374,41 @@ const loadImage = (
   return promise;
 };
 
+// Pelat logam di sekeliling lubang kartu, agar lubang terbaca sebagai lubang bergardan tempat cincin menggantung
+const roundedRect = (w: number, h: number, r: number) => {
+  const s = new THREE.Shape();
+  const x = -w / 2;
+  const y = -h / 2;
+  s.moveTo(x + r, y);
+  s.lineTo(x + w - r, y);
+  s.absarc(x + w - r, y + r, r, -Math.PI / 2, 0, false);
+  s.lineTo(x + w, y + h - r);
+  s.absarc(x + w - r, y + h - r, r, 0, Math.PI / 2, false);
+  s.lineTo(x + r, y + h);
+  s.absarc(x + r, y + h - r, r, Math.PI / 2, Math.PI, false);
+  s.lineTo(x, y + r);
+  s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5, false);
+  return s;
+};
+
+const buildGrommet = (layout: CardLayout) => {
+  const { slot } = layout;
+  const pad = 0.026;
+  const depth = THICKNESS + 0.024;
+  const plate = roundedRect(slot.width + pad * 2, slot.height + pad * 2, slot.height / 2 + pad);
+  plate.holes.push(roundedRect(slot.width, slot.height, slot.height / 2));
+  const geometry = new THREE.ExtrudeGeometry(plate, { depth, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 2 });
+  geometry.translate(0, slot.y, -depth / 2);
+  return geometry;
+};
+
 const cardLayout = (orientation: Orientation, cornerRadius: number): CardLayout => {
   const [width, height] = CARD_SIZES[orientation] || CARD_SIZES.portrait;
   const radius = mix(0.03, Math.min(width, height) * 0.2, clamp(cornerRadius, 0, 1));
-  // lubang agak lebih besar; dasar cincin tepat di tengah lubang agar kartu terlihat tergantung dari situ
-  const slot = { width: 0.4, height: 0.09, y: height / 2 - 0.15 };
-  const ringY = slot.y + RING_RADIUS;
+  // lubang agak lebih besar agar cincin terlihat menembusnya
+  const slot = { width: 0.42, height: 0.09, y: height / 2 - 0.16 };
+  // cincin bertumpu pada tepi atas lubang (batas lubang dan kartu), bukan melayang di tengah lubang
+  const ringY = slot.y + slot.height / 2 - RING_TUBE + RING_RADIUS;
   return { width, height, radius, slot, ringY, hangY: ringY + RING_RADIUS };
 };
 
@@ -1013,7 +1042,8 @@ const Lanyard = ({
     const backMesh = new THREE.Mesh(undefined, backMaterial);
     const ring = new THREE.Mesh(new THREE.TorusGeometry(RING_RADIUS, RING_TUBE, 18, 72), metalMaterial);
     ring.rotation.y = Math.PI / 2 - 0.7;
-    cardGroup.add(bodyMesh, frontMesh, backMesh, ring);
+    const grommet = new THREE.Mesh(buildGrommet(cardLayout('portrait', 0.3)), metalMaterial);
+    cardGroup.add(bodyMesh, frontMesh, backMesh, ring, grommet);
     scene.add(cardGroup);
 
     const bandGeometry = buildBandGeometry(SAMPLES);
@@ -1119,6 +1149,8 @@ const Lanyard = ({
         backMesh.rotation.y = Math.PI;
         backMesh.position.z = -(THICKNESS / 2 + BEVEL + 0.0006);
         ring.position.set(0, layout.ringY, 0);
+        grommet.geometry.dispose();
+        grommet.geometry = buildGrommet(layout);
         applied.framingKey = '';
       }
       const framingKey = `${layoutKey}|${s.size}|${s.anchor}|${s.strapLength}|${view.width}|${view.height}`;

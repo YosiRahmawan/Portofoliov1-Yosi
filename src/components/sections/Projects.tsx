@@ -5,6 +5,8 @@ import { useReveal } from '../../hooks/useReveal'
 import RubberSegment from '../reactbits/RubberSegment'
 import SpotlightCard from '../reactbits/SpotlightCard'
 import { Carousel } from '../ui/Carousel'
+import { CertificateGrid } from '../ui/CertificateGrid'
+import { CertificateViewer } from '../ui/CertificateViewer'
 import { Em, SectionTitle } from '../ui/Heading'
 import { Tag } from '../ui/Tag'
 import { TechConstellation } from '../ui/TechConstellation'
@@ -20,6 +22,8 @@ const link = 'text-sky hover:underline'
 export function Projects() {
   const ref = useRef<HTMLElement>(null)
   const [tab, setTab] = useState('projects')
+  const [viewing, setViewing] = useState<number | null>(null)
+  const [showAll, setShowAll] = useState(false)
   const content = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState<number>()
   // tinggi area konten mengikuti isi tab agar perpindahan tab tidak melompat
@@ -88,21 +92,38 @@ export function Projects() {
                 {certificates.map((c) => (
                   <li key={c.title + c.year} className={slide}>
                     <SpotlightCard className="h-full">
-                      {c.image && <img src={c.image} alt={c.title} loading="lazy" className="mb-4 aspect-[4/3] w-full rounded-lg object-cover" />}
-                      <h3 className="text-xl font-semibold">{c.title}</h3>
-                      <p className="mt-2 text-white/70">{c.issuer} · {c.year}</p>
-                      {c.url && <a href={c.url} target="_blank" rel="noopener noreferrer" className={`mt-5 inline-block text-sm ${link}`}>View credential</a>}
+                      <div className="flex h-full flex-col">
+                        {c.image && <img src={c.image} alt={c.title} loading="lazy" className="mb-4 aspect-[1.41] w-full rounded-lg object-cover" />}
+                        <h3 className="text-xl font-semibold">{c.title}</h3>
+                        <p className="mt-2 text-white/70">{c.issuer} · {c.year}</p>
+                        <button type="button" onClick={() => setViewing(certificates.indexOf(c))} className={`mt-auto self-start pt-5 text-sm ${link}`}>View certificate</button>
+                      </div>
                     </SpotlightCard>
                   </li>
                 ))}
               </Carousel>
             ))}
 
+          {tab === 'certificates' && certificates.length > 0 && (
+            <div className="mt-8 text-center">
+              <button
+                type="button"
+                aria-expanded={showAll}
+                onClick={() => setShowAll((v) => !v)}
+                className="inline-flex min-h-11 items-center rounded-full border border-white/25 px-6 text-sm font-medium transition-colors hover:border-sky hover:text-sky"
+              >
+                {showAll ? 'Hide all certificates' : `View all ${certificates.length} certificates`}
+              </button>
+              {showAll && <CertificateGrid items={certificates} onOpen={setViewing} />}
+            </div>
+          )}
+
           {tab === 'stack' && <TechConstellation />}
         </div>
           </div>
         </div>
       </div>
+      <CertificateViewer items={certificates} index={viewing} onChange={setViewing} />
     </section>
   )
 }

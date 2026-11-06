@@ -81,3 +81,8 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - Perpindahan tab memakai `RubberSegment` (React Bits, thumb karet yang bisa digeser); panel baru fade-up dan tinggi areanya dianimasikan.
 - Kartu kategori memakai `SpecularButton` (React Bits, 4 konteks WebGL) sebagai bingkai luar, tanpa fokus/klik; tag di dalamnya polos (`Tag`). Jangan pakai SpecularButton per tag: 23 konteks melewati batas ~16 di browser.
 - Kanvas bola dibuat lebih besar dari selnya (`-inset-14`) dan kamera dijauhkan, agar cincin, cahaya, dan debu tidak terpotong tepi kanvas.
+
+## Kartu ID 3D (Contact)
+- Muka kartu digambar di canvas (`src/lib/idCardFace.ts`) dari `profile` (foto, nama) dan `profile.idCard` (band, title, line, tag), lalu dipakai sebagai tekstur `Lanyard`. Ubah teks kartu di `src/data/profile.ts`.
+- Proporsi kartu 1.45 x 2.35 (`CARD_SIZES.portrait` di Lanyard.tsx) harus sama dengan `W`/`H` di `idCardFace.ts`. Tali hitam, `strapWidth` 0.45, `size` 0.7, `strapLength` 0.3 agar kartu muat di kanvas.
+- Kanvas Lanyard naik sampai tepi atas section supaya tali tergantung dari atas; cincin bertumpu di tepi atas lubang kartu (pelat logam di sekeliling lubang).
