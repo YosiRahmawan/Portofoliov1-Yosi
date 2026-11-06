@@ -73,3 +73,11 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - Layar sentuh: sorot melayang sendiri; reduced motion: sorot diam di tengah.
 - Busur statistik di kanan (`StatsArc`), angka dari `profile.stats`; disembunyikan di bawah 640px.
 - Tepi kiri/kanan bingkai memudar ke latar hero (biru gelap, sama dengan tepi kiri foto). Jangan perpanjang bahu/latar secara buatan: pernah dicoba dan hasilnya aneh.
+
+## Tech Stack (bola 3D + kartu)
+- Tab Tech Stack di "Selected work": bola biru bercahaya di tengah (`TechOrb`, three.js murni: shader tepi menyala, tiga cincin cahaya, debu partikel), empat kartu kaca di kiri/kanan (`TechCard`) dengan garis menyala ke bola. Design digabung ke Frontend hanya di tampilan.
+- `TechOrb` dimuat lazy (hanya saat tab dibuka), berhenti menggambar saat di luar layar atau tab browser tersembunyi, satu frame diam bila reduced motion. Warna dibaca dari token `--color-blue` dan `--color-sky`.
+- HP: bola di atas, kartu bertumpuk, garis disembunyikan.
+- Perpindahan tab memakai `RubberSegment` (React Bits, thumb karet yang bisa digeser); panel baru fade-up dan tinggi areanya dianimasikan.
+- Kartu kategori memakai `SpecularButton` (React Bits, 4 konteks WebGL) sebagai bingkai luar, tanpa fokus/klik; tag di dalamnya polos (`Tag`). Jangan pakai SpecularButton per tag: 23 konteks melewati batas ~16 di browser.
+- Kanvas bola dibuat lebih besar dari selnya (`-inset-14`) dan kamera dijauhkan, agar cincin, cahaya, dan debu tidak terpotong tepi kanvas.

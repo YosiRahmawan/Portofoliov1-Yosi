@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { certificates } from '../../data/certificates'
-import { profile } from '../../data/profile'
 import { projects } from '../../data/projects'
 import { useReveal } from '../../hooks/useReveal'
+import RubberSegment from '../reactbits/RubberSegment'
 import SpotlightCard from '../reactbits/SpotlightCard'
 import { Carousel } from '../ui/Carousel'
 import { Em, SectionTitle } from '../ui/Heading'
-import { Tabs } from '../ui/Tabs'
 import { Tag } from '../ui/Tag'
+import { TechConstellation } from '../ui/TechConstellation'
 
 const TABS = [
   { id: 'projects', label: 'Projects' },
@@ -38,13 +38,24 @@ export function Projects() {
         <div data-reveal className="text-center">
           <SectionTitle id="projects-title">Selected <Em>work</Em></SectionTitle>
           <div className="mt-8">
-            <Tabs tabs={TABS} value={tab} onChange={setTab} />
+            <RubberSegment
+              items={TABS.map((t) => ({ value: t.id, label: t.label }))}
+              value={tab}
+              onChange={setTab}
+              size="lg"
+              radius={22}
+              aria-label="Portfolio content"
+              trackColor="color-mix(in srgb, var(--color-white) 10%, transparent)"
+              thumbColor="var(--color-white)"
+              textColor="var(--color-white)"
+              activeTextColor="var(--color-black)"
+            />
           </div>
         </div>
 
         <div className="-mx-1 mt-10 overflow-hidden px-1 transition-[height] duration-300 ease-out motion-reduce:transition-none" style={{ height }}>
           <div ref={content}>
-        <div key={tab} role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`} className="tab-in">
+        <div key={tab} role="group" aria-label={TABS.find((t) => t.id === tab)?.label} className="tab-in">
           {tab === 'projects' &&
             (projects.length === 0 ? (
               <p className="text-center text-white/70">Project segera hadir.</p>
@@ -87,20 +98,7 @@ export function Projects() {
               </Carousel>
             ))}
 
-          {tab === 'stack' && (
-            <dl className="grid gap-8 sm:grid-cols-2">
-              {Object.entries(profile.skillGroups).map(([group, items]) => (
-                <div key={group}>
-                  <dt className="font-mono text-xs uppercase tracking-wider text-white/60">{group}</dt>
-                  <dd className="mt-3">
-                    <ul className="flex flex-wrap gap-2">
-                      {items.map((s) => <li key={s}><Tag>{s}</Tag></li>)}
-                    </ul>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          )}
+          {tab === 'stack' && <TechConstellation />}
         </div>
           </div>
         </div>
