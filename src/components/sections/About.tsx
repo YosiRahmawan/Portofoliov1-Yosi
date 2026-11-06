@@ -12,6 +12,14 @@ export function About() {
       <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[1fr_2fr]">
         <div data-reveal>
           <SectionTitle id="about-title">About <Em>me</Em></SectionTitle>
+          {profile.photo && (
+            <img
+              src={profile.photo}
+              alt={`Foto ${profile.name}`}
+              loading="lazy"
+              className="mt-8 aspect-[3/4] w-full max-w-xs rounded-2xl object-cover object-top"
+            />
+          )}
         </div>
         <div data-reveal>
           <p className="text-lg">{profile.bio}</p>

@@ -3,6 +3,8 @@ export type JourneyItem = {
   title: string
   place: string
   description: string
+  // poin tugas untuk CV; kosong = CV memakai description
+  bullets?: string[]
   type: 'education' | 'experience'
 }
 
@@ -23,10 +25,17 @@ export const journey: JourneyItem[] = [
     type: 'education',
   },
   {
-    period: '2026 (3 bulan)',
+    period: '2026 - sekarang',
     title: 'Magang: UI/UX, Frontend, Backend & Mobile',
     place: 'Diskominfo Kota Tasikmalaya',
     description: 'Merancang UI/UX, membangun frontend dan backend, serta mengembangkan aplikasi mobile.',
+    type: 'experience',
+  },
+  {
+    period: 'November 2026 (1 bulan)',
+    title: 'Magang',
+    place: 'Yayasan Abu Bakar As-Shiddiq Tasikmalaya',
+    description: 'Magang selama 1 bulan.',
     type: 'experience',
   },
 ]

@@ -1,35 +1,21 @@
+const skillGroups: Record<string, string[]> = {
+  Design: ['Figma'],
+  Frontend: ['React', 'Vite', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
+  Backend: ['Laravel', 'PHP', 'MySQL', 'Supabase', 'Firebase', 'REST API', 'Midtrans', 'Python'],
+  Mobile: ['Flutter', 'Dart', 'Provider'],
+  Tools: ['Git', 'GitHub', 'Vercel', 'Laragon', 'Vibe Coding'],
+}
+
 export const profile = {
   name: 'Yosi Rahmawan',
-  role: 'UI/UX Designer & Full-Stack Developer',
+  role: 'Full-Stack Developer',
   bio: 'Mahasiswa Sistem Informasi semester 5 di UBSI Tasikmalaya. Saat ini magang di Diskominfo Kota Tasikmalaya, mengerjakan UI/UX, frontend, backend, dan aplikasi mobile.',
-  photo: '',
+  photo: '/images/profile.jpg',
   // nomor format internasional tanpa +; kosong = tombol nonaktif
   whatsapp: '62882002838322',
-  // mis. /cv/Yosi-CV.pdf; kosong = tombol nonaktif
-  cvPath: '',
-  skills: [
-    'Figma',
-    'React',
-    'Vite',
-    'JavaScript',
-    'HTML',
-    'CSS',
-    'Tailwind CSS',
-    'Laravel',
-    'PHP',
-    'MySQL',
-    'Supabase',
-    'Firebase',
-    'REST API',
-    'Midtrans',
-    'Flutter',
-    'Dart',
-    'Provider',
-    'Python',
-    'Git',
-    'GitHub',
-    'Vercel',
-    'Laragon',
-    'Vibe Coding',
-  ],
+  // opsional; kosong = tidak ditampilkan di CV
+  email: '',
+  location: '',
+  skillGroups,
+  skills: Object.values(skillGroups).flat(),
 }

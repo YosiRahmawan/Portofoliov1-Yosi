@@ -3,7 +3,8 @@ import type { ReactNode } from 'react'
 type Props = {
   variant?: 'primary' | 'secondary'
   href?: string
-  download?: boolean
+  onClick?: () => void
+  disabled?: boolean
   children: ReactNode
 }
 
@@ -13,23 +14,27 @@ const styles = {
   primary: 'bg-blue text-white hover:bg-sky hover:text-black',
   secondary: 'border border-white/30 text-white hover:border-sky hover:text-sky',
 }
+const off = 'cursor-not-allowed opacity-40'
 
-export function Button({ variant = 'primary', href, download, children }: Props) {
+export function Button({ variant = 'primary', href, onClick, disabled, children }: Props) {
+  const cls = `${base} ${styles[variant]}`
+  if (onClick) {
+    return (
+      <button type="button" onClick={onClick} disabled={disabled} className={`${cls} ${disabled ? off : ''}`}>
+        {children}
+      </button>
+    )
+  }
   if (!href) {
     return (
-      <span aria-disabled="true" className={`${base} ${styles[variant]} cursor-not-allowed opacity-40`}>
+      <span aria-disabled="true" className={`${cls} ${off}`}>
         {children}
       </span>
     )
   }
   const external = href.startsWith('http')
   return (
-    <a
-      href={href}
-      download={download}
-      {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
-      className={`${base} ${styles[variant]}`}
-    >
+    <a href={href} {...(external && { target: '_blank', rel: 'noopener noreferrer' })} className={cls}>
       {children}
     </a>
   )

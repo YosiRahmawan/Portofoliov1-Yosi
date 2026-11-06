@@ -1,6 +1,7 @@
 import { profile } from '../../data/profile'
 import SplitText from '../reactbits/SplitText'
 import { Button } from '../ui/Button'
+import { DownloadCvButton } from '../ui/DownloadCvButton'
 import { Em } from '../ui/Heading'
 import { GlassPanel } from '../ui/GlassPanel'
 
@@ -19,7 +20,7 @@ export function Hero() {
         <p className="mt-8 max-w-xl text-lg text-white/85">{profile.bio}</p>
         <div className="mt-10 flex flex-wrap gap-3">
           <Button href={wa}>Hubungi via WhatsApp</Button>
-          <Button variant="secondary" href={profile.cvPath || undefined} download>Download CV</Button>
+          <DownloadCvButton />
         </div>
         <GlassPanel className="mt-12 inline-block px-5 py-3 text-sm sm:absolute sm:right-8 sm:bottom-12 sm:mt-0">
           Open for freelance

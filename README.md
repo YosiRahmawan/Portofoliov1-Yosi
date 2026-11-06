@@ -20,7 +20,7 @@ npm run preview  # cek hasil build
 ```
 
 ## Mengubah konten
-Edit file di `src/data/` (`profile.ts`, `projects.ts`, `journey.ts`, `socials.ts`). Ganti CV di `public/cv/Yosi-CV.pdf`.
+Edit file di `src/data/` (`profile.ts`, `projects.ts`, `journey.ts`, `socials.ts`). CV dibuat otomatis (PDF) dari data yang sama lewat tombol Download CV; isi `email` dan `location` di `profile.ts` bila mau ditampilkan, dan `bullets` di `journey.ts` untuk poin tugas.
 
 ## Status
 Kerangka halaman selesai (build lolos). Data pribadi di `src/data/` masih placeholder.
