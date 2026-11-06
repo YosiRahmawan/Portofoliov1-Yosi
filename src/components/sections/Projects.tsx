@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { certificates } from '../../data/certificates'
-import { projects } from '../../data/projects'
+import { projects, type Project } from '../../data/projects'
 import { useReveal } from '../../hooks/useReveal'
 import RubberSegment from '../reactbits/RubberSegment'
 import SpotlightCard from '../reactbits/SpotlightCard'
@@ -8,8 +8,10 @@ import { Carousel } from '../ui/Carousel'
 import { CertificateGrid } from '../ui/CertificateGrid'
 import { CertificateViewer } from '../ui/CertificateViewer'
 import { Em, SectionTitle } from '../ui/Heading'
+import { ProjectViewer } from '../ui/ProjectViewer'
 import { Tag } from '../ui/Tag'
 import { TechConstellation } from '../ui/TechConstellation'
+import { TechIcon } from '../ui/TechIcon'
 
 const TABS = [
   { id: 'projects', label: 'Projects' },
@@ -24,6 +26,7 @@ export function Projects() {
   const [tab, setTab] = useState('projects')
   const [viewing, setViewing] = useState<number | null>(null)
   const [showAll, setShowAll] = useState(false)
+  const [openProject, setOpenProject] = useState<Project | null>(null)
   const content = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState<number>()
   // tinggi area konten mengikuti isi tab agar perpindahan tab tidak melompat
@@ -68,15 +71,24 @@ export function Projects() {
                 {projects.map((p) => (
                   <li key={p.title} className={slide}>
                     <SpotlightCard className="h-full">
-                      {p.image && <img src={p.image} alt={p.title} loading="lazy" className="mb-4 aspect-video w-full rounded-lg object-cover" />}
-                      <h3 className="text-xl font-semibold">{p.title}</h3>
-                      <p className="mt-2 text-white/70">{p.description}</p>
-                      <ul className="mt-4 flex flex-wrap gap-2">
-                        {p.tech.map((t) => <li key={t}><Tag>{t}</Tag></li>)}
-                      </ul>
-                      <div className="mt-5 flex gap-4 text-sm">
-                        {p.demoUrl && <a href={p.demoUrl} target="_blank" rel="noopener noreferrer" className={link}>Demo</a>}
-                        {p.repoUrl && <a href={p.repoUrl} target="_blank" rel="noopener noreferrer" className={link}>Code</a>}
+                      <div className="flex h-full flex-col">
+                        {p.image && (
+                          <div className="relative -mx-8 -mt-8">
+                            <img src={p.image} alt={p.title} loading="lazy" className="aspect-video w-full object-cover" />
+                            <div aria-hidden className="cover-blur absolute inset-x-0 bottom-0 h-1/2" />
+                            <div aria-hidden className="cover-fade absolute inset-x-0 bottom-0 h-3/4" />
+                          </div>
+                        )}
+                        <h3 className={`text-xl font-semibold ${p.image ? 'relative -mt-8' : ''}`}>{p.title}</h3>
+                        <p className="mt-2 text-white/70">{p.description}</p>
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                          {p.tech.map((t) => <li key={t}><Tag><TechIcon name={t} />{t}</Tag></li>)}
+                        </ul>
+                        <div className="mt-auto flex gap-4 pt-5 text-sm">
+                          {(p.gallery?.length || p.details?.length) && <button type="button" onClick={() => setOpenProject(p)} className={link}>Details</button>}
+                          {p.demoUrl && <a href={p.demoUrl} target="_blank" rel="noopener noreferrer" className={link}>Demo</a>}
+                          {p.repoUrl && <a href={p.repoUrl} target="_blank" rel="noopener noreferrer" className={link}>GitHub</a>}
+                        </div>
                       </div>
                     </SpotlightCard>
                   </li>
@@ -124,6 +136,7 @@ export function Projects() {
         </div>
       </div>
       <CertificateViewer items={certificates} index={viewing} onChange={setViewing} />
+      <ProjectViewer project={openProject} onClose={() => setOpenProject(null)} />
     </section>
   )
 }

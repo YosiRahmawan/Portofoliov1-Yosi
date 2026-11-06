@@ -104,3 +104,14 @@ body {
 .viewer-in { animation: viewerIn 0.25s ease-out both; }
 .viewer-img { animation: certIn 0.35s ease-out both; }
 @media (prefers-reduced-motion: reduce) { .cert-in, .viewer-in, .viewer-img { animation: none; } }
+
+/* Sampul project: gambar memudar gelap ke warna permukaan kartu dengan blur di bagian bawah, tempat teks berada */
+.cover-fade {
+  background: linear-gradient(to top, var(--spotlight-card-surface) 0%, color-mix(in srgb, var(--spotlight-card-surface) 60%, transparent) 45%, transparent 100%);
+}
+.cover-blur {
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+}

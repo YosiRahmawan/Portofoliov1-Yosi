@@ -87,3 +87,7 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - Proporsi kartu 1.45 x 2.35 (`CARD_SIZES.portrait` di Lanyard.tsx) harus sama dengan `W`/`H` di `idCardFace.ts`. Tali hitam, `strapWidth` 0.45, `size` 0.7, `strapLength` 0.3 agar kartu muat di kanvas.
 - Kanvas Lanyard naik sampai tepi atas section supaya tali tergantung dari atas; cincin bertumpu di tepi atas lubang kartu (pelat logam di sekeliling lubang).
 - Tali: hitam dengan cetak teks (`src/lib/strapTexture.ts`: nama dan peran dari `profile`, jahitan putus-putus di tepi, serat anyaman) dan gesper plastik arang di 62% panjang tali (`BUCKLE_AT` di Lanyard.tsx).
+
+## Kartu project dengan gambar
+- Project yang punya `image` menampilkan sampul penuh di atas kartu; bagian bawahnya memudar ke warna permukaan kartu dengan sedikit blur (`.cover-fade` dan `.cover-blur`), dan judul berada di atas bagian yang memudar itu.
+- `gallery` dan `details` (paragraf artikel) di `src/data/projects.ts` muncul di jendela detail (`ProjectViewer`, tombol "Details"); tombol hanya ada bila salah satunya terisi. Tangkapan layar dipotong dari bilah tab browser dan taskbar, lalu disimpan sebagai WebP di `public/images/projects/`.
