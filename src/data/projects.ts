@@ -18,8 +18,14 @@ export const projects: Project[] = [
   {
     title: 'SATU RUMAH',
     description:
-      'Aplikasi mobile untuk perizinan penyerahan PSU (prasarana, sarana, dan utilitas) perumahan Kota Tasikmalaya. Menghubungkan pengembang, admin Disperwaskim, dan tim pengawas lapangan. Saat ini masih prototipe dengan data dummy.',
-    image: '',
+      'Sistem digital perizinan penyerahan PSU (prasarana, sarana, dan utilitas) perumahan Kota Tasikmalaya: aplikasi mobile Flutter untuk pengembang dan tim lapangan, serta portal web untuk verifikator Disperwaskim.',
+    image: shot('satu-rumah-dashboard'),
+    gallery: [shot('satu-rumah-dashboard'), shot('satu-rumah-mobile'), shot('satu-rumah-login')],
+    details: [
+      'SATU RUMAH (Sistem Aplikasi Terpadu Urusan Rumah) mendigitalkan penyerahan PSU perumahan dari pengembang kepada Pemerintah Kota Tasikmalaya melalui Dinas Perumahan dan Kawasan Permukiman (Disperwaskim).',
+      'Tiga peran dalam satu alur: pengembang mengajukan berkas dan memantau status lewat notifikasi, admin Disperwaskim memverifikasi berkas dan menugaskan survey lewat portal web (dashboard pengawasan, antrean pengajuan, ekspor CSV), dan tim lapangan menjalankan survey, mendokumentasikan temuan, lalu menerbitkan Berita Acara.',
+      'Aplikasi mobile dibangun dengan Flutter (Riverpod dan GoRouter), Berita Acara dapat dicetak atau dibagikan sebagai PDF, dan portal web admin memakai Laravel. Data di tangkapan layar adalah data contoh.',
+    ],
     tech: ['Flutter', 'Dart', 'Riverpod', 'Laravel'],
     repoUrl: gh('Satu-rumahv2'),
   },
@@ -54,8 +60,14 @@ export const projects: Project[] = [
   {
     title: 'PKG Web Fresh',
     description:
-      'Tugas project kampus: sistem absensi berbasis web sesuai permintaan customer, dibuat dengan Laravel dan dilengkapi aplikasi Flutter pendamping.',
-    image: '',
+      'SIMPEG, sistem penilaian kinerja guru untuk MTs Jidris As-Salam: admin mengelola data user, guru, jabatan, kriteria, kompetensi, dan indikator, lalu memantau penilaian lewat dashboard. Tugas project kampus dengan Laravel dan aplikasi Flutter pendamping.',
+    image: shot('pkg-dashboard'),
+    gallery: [shot('pkg-dashboard'), shot('pkg-guru'), shot('pkg-login')],
+    details: [
+      'SIMPEG (Sistem Penilaian Kinerja Guru) dibuat untuk MTs Jidris As-Salam sebagai tugas project kampus atas permintaan customer.',
+      'Panel admin mengelola data user, data guru, jabatan, kriteria, kompetensi, dan indikator penilaian. Dashboard menampilkan total guru, total penilai, total evidence, total penilaian, rata-rata skor per periode, dan status evaluasi.',
+      'Web dibangun dengan Laravel (Blade dan Tailwind CSS), dan repo yang sama memuat aplikasi Flutter (flutter_simpeg_app).',
+    ],
     tech: ['Laravel', 'PHP', 'Tailwind CSS', 'Flutter'],
     repoUrl: gh('pkg-web-fresh'),
   },

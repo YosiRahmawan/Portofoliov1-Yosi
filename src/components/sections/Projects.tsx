@@ -80,7 +80,7 @@ export function Projects() {
                           </div>
                         )}
                         <h3 className={`text-xl font-semibold ${p.image ? 'relative -mt-8' : ''}`}>{p.title}</h3>
-                        <p className="mt-2 text-white/70">{p.description}</p>
+                        <p className="mt-2 line-clamp-4 text-white/70">{p.description}</p>
                         <ul className="mt-4 flex flex-wrap gap-2">
                           {p.tech.map((t) => <li key={t}><Tag><TechIcon name={t} />{t}</Tag></li>)}
                         </ul>

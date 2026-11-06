@@ -1,14 +1,15 @@
 import {
   siCss, siDart, siFigma, siFirebase, siFlutter, siGit, siGithub, siHtml5, siJavascript, siLaragon,
   siLaravel, siMysql, siNextdotjs, siPhp, siPython, siReact, siSupabase, siTailwindcss, siVercel, siVite,
+  siFastify, siSqlite, siTypescript,
 } from 'simple-icons'
-import { Layers, Palette, Webhook, type LucideIcon } from 'lucide-react'
+import { Layers, Palette, Waves, Webhook, type LucideIcon } from 'lucide-react'
 
 export type TechIconData = { path: string; hex: string } | { fallback: LucideIcon }
 
 const b = (i: { path: string; hex: string }): TechIconData => ({ path: i.path, hex: i.hex })
 
-// Kunci = nama skill di profile.skillGroups. Canva, REST API, dan Provider tidak punya logo merek di simple-icons.
+// Kunci = nama skill di profile.skillGroups atau project.tech. Canva, REST API, Provider, dan Riverpod tidak punya logo merek di simple-icons.
 export const techIcons: Record<string, TechIconData> = {
   Figma: b(siFigma),
   Canva: { fallback: Palette },
@@ -29,6 +30,10 @@ export const techIcons: Record<string, TechIconData> = {
   Flutter: b(siFlutter),
   Dart: b(siDart),
   Provider: { fallback: Layers },
+  Riverpod: { fallback: Waves },
+  TypeScript: b(siTypescript),
+  SQLite: b(siSqlite),
+  Fastify: b(siFastify),
   Git: b(siGit),
   GitHub: b(siGithub),
   Vercel: b(siVercel),

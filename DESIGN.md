@@ -91,3 +91,5 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 ## Kartu project dengan gambar
 - Project yang punya `image` menampilkan sampul penuh di atas kartu; bagian bawahnya memudar ke warna permukaan kartu dengan sedikit blur (`.cover-fade` dan `.cover-blur`), dan judul berada di atas bagian yang memudar itu.
 - `gallery` dan `details` (paragraf artikel) di `src/data/projects.ts` muncul di jendela detail (`ProjectViewer`, tombol "Details"); tombol hanya ada bila salah satunya terisi. Tangkapan layar dipotong dari bilah tab browser dan taskbar, lalu disimpan sebagai WebP di `public/images/projects/`.
+- Deskripsi di kartu project dipotong empat baris dengan "..." (`line-clamp-4`) supaya tinggi kartu seragam; teks lengkap ada di jendela Details. Klik gambar di Details membuka layar penuh (dialog terpisah, Esc hanya menutup gambar besar).
+- Logo teknologi project dipetakan di `src/data/techIcons.ts` (TypeScript, SQLite, Fastify dari simple-icons; Riverpod, Canva, REST API, Provider memakai ikon umum karena tidak punya logo merek).
