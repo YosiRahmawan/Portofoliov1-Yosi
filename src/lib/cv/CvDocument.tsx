@@ -76,12 +76,12 @@ export function CvDocument({ photoSrc }: { photoSrc?: string }) {
           {photoSrc ? <Image src={photoSrc} style={s.photo} /> : null}
         </View>
 
-        <Section title="Profil">
+        <Section title="Profile">
           <Text>{profile.bio}</Text>
         </Section>
 
         {experience.length > 0 && (
-          <Section title="Pengalaman">
+          <Section title="Experience">
             {[...experience].reverse().map((j) => (
               <View key={j.title + j.place} style={s.item} wrap={false}>
                 <View style={s.row}>
@@ -95,7 +95,7 @@ export function CvDocument({ photoSrc }: { photoSrc?: string }) {
           </Section>
         )}
 
-        <Section title="Pendidikan">
+        <Section title="Education">
           {[...education].reverse().map((j) => (
             <View key={j.title + j.place} style={s.item} wrap={false}>
               <View style={s.row}>
@@ -107,7 +107,7 @@ export function CvDocument({ photoSrc }: { photoSrc?: string }) {
           ))}
         </Section>
 
-        <Section title="Keahlian">
+        <Section title="Skills">
           {Object.entries(profile.skillGroups).map(([group, items]) => (
             <Text key={group} style={{ marginBottom: 2 }}>
               <Text style={s.bold}>{group}: </Text>
@@ -117,7 +117,7 @@ export function CvDocument({ photoSrc }: { photoSrc?: string }) {
         </Section>
 
         {projects.length > 0 && (
-          <Section title="Proyek">
+          <Section title="Projects">
             {projects.map((p) => (
               <View key={p.title} style={s.item} wrap={false}>
                 <Text style={s.bold}>{p.title}</Text>

@@ -12,14 +12,14 @@ const photo = 'absolute inset-0 bg-cover bg-no-repeat [background-position:cente
 export function Hero() {
   const reveal = useRef<HTMLDivElement>(null)
   useSpotlight(reveal)
-  const wa = profile.whatsapp ? `https://wa.me/${profile.whatsapp}?text=Halo%20${profile.name}` : undefined
+  const wa = profile.whatsapp ? `https://wa.me/${profile.whatsapp}?text=Hi%20${profile.name}` : undefined
 
   return (
     <section id="hero" className="relative isolate h-svh min-h-[640px] overflow-hidden hero-bg">
       <div className="hero-kenburns hero-frame">
         <div
           role="img"
-          aria-label={`Foto ${profile.name}`}
+          aria-label={`Photo of ${profile.name}`}
           className={photo}
           style={{ backgroundImage: 'url(/images/hero-base.webp)' }}
         />
@@ -48,7 +48,7 @@ export function Hero() {
           {profile.bio}
         </p>
         <div className="hero-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: '0.7s' }}>
-          <Button variant="light" href={wa}>Hubungi via WhatsApp</Button>
+          <Button variant="light" href={wa}>Contact me on WhatsApp</Button>
           <DownloadCvButton />
         </div>
       </div>

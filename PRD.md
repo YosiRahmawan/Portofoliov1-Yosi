@@ -16,9 +16,10 @@ Satu halaman (single page) dengan bagian berikut, berurutan:
 | # | Bagian | Isi |
 |---|--------|-----|
 | 1 | Hero | Nama, peran singkat, 2 tombol: **Hubungi via WhatsApp** dan **Download CV** |
-| 2 | About | Bio singkat, foto, skill/tech stack |
+| 2 | About | Foto, "Who am I", "My approach", Personal details |
 | 3 | Projects | Kartu project: gambar, judul, deskripsi, tech, tautan demo/GitHub |
 | 4 | Journey | Timeline pendidikan dan pengalaman dari SMK sampai sekarang |
+| 4b | Tech Stack | Skill dikelompokkan: Design, Frontend, Backend, Mobile, Tools |
 | 5 | Contact | WhatsApp, GitHub, LinkedIn, Instagram, TikTok |
 | 6 | Footer | Hak cipta, tombol kembali ke atas |
 

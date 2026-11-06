@@ -4,14 +4,14 @@ import { profile } from '../../data/profile'
 const field =
   'w-full border-0 border-b border-white/50 bg-transparent py-2 text-white placeholder:text-white/60 focus:border-white focus:outline-none'
 
-// Tidak ada backend: pesan dikirim lewat WhatsApp dengan isi yang sudah tersusun
+// Tidak ada backend: pesan dikirim lewat WhatsApp dengan isi yang sudah tersusun (teks tampil: Inggris)
 export function ContactForm() {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const d = new FormData(e.currentTarget)
     const text = [
-      `Halo ${profile.name}, saya ${d.get('name')}${d.get('email') ? ` (${d.get('email')})` : ''}.`,
-      `Subjek: ${d.get('subject')}`,
+      `Hi ${profile.name}, I'm ${d.get('name')}${d.get('email') ? ` (${d.get('email')})` : ''}.`,
+      `Subject: ${d.get('subject')}`,
       '',
       d.get('message'),
     ].join('\n')
@@ -22,23 +22,23 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-6">
-      <label className="sr-only" htmlFor="c-name">Nama</label>
-      <input id="c-name" name="name" required placeholder="Nama kamu" autoComplete="name" className={field} />
-      <label className="sr-only" htmlFor="c-email">Email (opsional)</label>
-      <input id="c-email" name="email" type="email" placeholder="Email (opsional)" autoComplete="email" className={field} />
-      <label className="sr-only" htmlFor="c-subject">Subjek</label>
-      <input id="c-subject" name="subject" required placeholder="Subjek" className={field} />
-      <label className="sr-only" htmlFor="c-message">Pesan</label>
-      <textarea id="c-message" name="message" required rows={4} placeholder="Pesan kamu" className={field} />
+      <label className="sr-only" htmlFor="c-name">Name</label>
+      <input id="c-name" name="name" required placeholder="Your name" autoComplete="name" className={field} />
+      <label className="sr-only" htmlFor="c-email">Email (optional)</label>
+      <input id="c-email" name="email" type="email" placeholder="Email (optional)" autoComplete="email" className={field} />
+      <label className="sr-only" htmlFor="c-subject">Subject</label>
+      <input id="c-subject" name="subject" required placeholder="Subject" className={field} />
+      <label className="sr-only" htmlFor="c-message">Message</label>
+      <textarea id="c-message" name="message" required rows={4} placeholder="Your message" className={field} />
       <div>
         <button
           type="submit"
           disabled={off}
           className="inline-flex min-h-11 items-center rounded-full bg-black px-6 text-sm font-medium text-white transition-colors hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Kirim via WhatsApp
+          Send via WhatsApp
         </button>
-        <p className="mt-3 text-xs text-white/70">Pesan akan dibuka di WhatsApp untuk dikirim.</p>
+        <p className="mt-3 text-xs text-white/70">Your message will open in WhatsApp, ready to send.</p>
       </div>
     </form>
   )

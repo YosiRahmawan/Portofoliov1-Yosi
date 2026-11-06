@@ -7,11 +7,11 @@ const gap = <span aria-hidden className="inline-block w-10 md:w-16" />
 // Teks berjalan; arah dan kecepatannya berubah mengikuti arah scroll (komponen React Bits)
 export function Marquee() {
   return (
-    <section aria-label={`Hai, aku ${profile.name}. UI/UX Designer dan ${profile.role}.`} className="overflow-hidden py-6 text-white md:py-8">
+    <section aria-label={`Hi, I'm ${profile.name}. UI/UX Designer and ${profile.role}.`} className="overflow-hidden py-6 text-white md:py-8">
       <ScrollVelocity
         texts={[
           <>
-            Hai, aku <Em>{profile.name}</Em>
+            Hi, I’m <Em>{profile.name}</Em>
             {gap}
             <span className="text-white/50">UI/UX Designer</span>
             {gap}

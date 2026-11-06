@@ -26,7 +26,7 @@ export function DownloadCvButton() {
       onClick={onClick}
       disabled={state === 'loading'}
     >
-      {state === 'loading' ? 'Membuat CV...' : state === 'error' ? 'Gagal, coba lagi' : 'Download CV'}
+      {state === 'loading' ? 'Generating CV...' : state === 'error' ? 'Failed, try again' : 'Download CV'}
     </SpecularButton>
   )
 }

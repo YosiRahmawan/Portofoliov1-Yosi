@@ -6,6 +6,7 @@ import { Journey } from './components/sections/Journey'
 import { Marquee } from './components/sections/Marquee'
 import { Navbar } from './components/sections/Navbar'
 import { Projects } from './components/sections/Projects'
+import { TechStack } from './components/sections/TechStack'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <About />
         <Projects />
         <Journey />
+        <TechStack />
         <Contact />
       </main>
       <Footer />
