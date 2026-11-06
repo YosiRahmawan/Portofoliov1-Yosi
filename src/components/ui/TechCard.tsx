@@ -1,5 +1,6 @@
 import SpecularButton from '../reactbits/SpecularButton'
 import { Tag } from './Tag'
+import { TechIcon } from './TechIcon'
 
 // Kartu satu kategori memakai efek SpecularButton (React Bits); bukan tombol sungguhan, jadi tidak bisa difokus.
 // Di md ke atas ada garis menyala ke arah bola di tengah.
@@ -23,7 +24,7 @@ export function TechCard({ title, items, side }: { title: string; items: string[
         <span className="block text-left">
           <span className="block text-sm font-semibold">{title}</span>
           <span className="mt-3 flex flex-wrap gap-2">
-            {items.map((s) => <Tag key={s}>{s}</Tag>)}
+            {items.map((s) => <Tag key={s}><TechIcon name={s} />{s}</Tag>)}
           </span>
         </span>
       </SpecularButton>
