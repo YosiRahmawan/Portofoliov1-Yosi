@@ -19,7 +19,7 @@ export function Hero() {
         </h1>
         <p className="mt-8 max-w-xl text-lg text-white/85">{profile.bio}</p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Button href={wa}>Hubungi via WhatsApp</Button>
+          <Button variant="light" href={wa}>Hubungi via WhatsApp</Button>
           <DownloadCvButton />
         </div>
         <GlassPanel className="mt-12 inline-block px-5 py-3 text-sm sm:absolute sm:right-8 sm:bottom-12 sm:mt-0">

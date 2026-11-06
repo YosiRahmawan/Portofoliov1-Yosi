@@ -25,7 +25,7 @@ export const journey: JourneyItem[] = [
     type: 'education',
   },
   {
-    period: '2026 - sekarang',
+    period: 'Agustus 2026 - sekarang',
     title: 'Magang: UI/UX, Frontend, Backend & Mobile',
     place: 'Diskominfo Kota Tasikmalaya',
     description: 'Merancang UI/UX, membangun frontend dan backend, serta mengembangkan aplikasi mobile.',

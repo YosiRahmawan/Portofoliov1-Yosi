@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 type Props = {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'light'
   href?: string
   onClick?: () => void
   disabled?: boolean
@@ -13,6 +13,7 @@ const base =
 const styles = {
   primary: 'bg-blue text-white hover:bg-sky hover:text-black',
   secondary: 'border border-white/30 text-white hover:border-sky hover:text-sky',
+  light: 'bg-white text-black hover:bg-sky',
 }
 const off = 'cursor-not-allowed opacity-40'
 
