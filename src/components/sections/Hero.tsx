@@ -12,7 +12,7 @@ const photo = 'absolute inset-0 bg-cover bg-no-repeat [background-position:cente
 export function Hero() {
   const reveal = useRef<HTMLDivElement>(null)
   useSpotlight(reveal)
-  const wa = profile.whatsapp ? `https://wa.me/${profile.whatsapp}?text=Hi%20${profile.name}` : undefined
+  const wa = profile.whatsapp ? `https://wa.me/${profile.whatsapp}?text=Halo%20${profile.name}` : undefined
 
   return (
     <section id="hero" className="relative isolate h-svh min-h-[640px] overflow-hidden hero-bg">

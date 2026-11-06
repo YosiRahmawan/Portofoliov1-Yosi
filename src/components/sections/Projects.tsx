@@ -15,7 +15,7 @@ export function Projects() {
           <SectionTitle id="projects-title">Selected <Em>projects</Em></SectionTitle>
         </div>
         {projects.length === 0 ? (
-          <p data-reveal className="mt-10 text-white/70">Projects coming soon.</p>
+          <p data-reveal className="mt-10 text-white/70">Project segera hadir.</p>
         ) : (
           <ul className="mt-10 grid gap-6 md:grid-cols-2">
             {projects.map((p) => (

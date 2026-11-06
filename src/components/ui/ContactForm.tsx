@@ -10,8 +10,8 @@ export function ContactForm() {
     e.preventDefault()
     const d = new FormData(e.currentTarget)
     const text = [
-      `Hi ${profile.name}, I'm ${d.get('name')}${d.get('email') ? ` (${d.get('email')})` : ''}.`,
-      `Subject: ${d.get('subject')}`,
+      `Halo ${profile.name}, saya ${d.get('name')}${d.get('email') ? ` (${d.get('email')})` : ''}.`,
+      `Subjek: ${d.get('subject')}`,
       '',
       d.get('message'),
     ].join('\n')
@@ -38,7 +38,7 @@ export function ContactForm() {
         >
           Send via WhatsApp
         </button>
-        <p className="mt-3 text-xs text-white/70">Your message will open in WhatsApp, ready to send.</p>
+        <p className="mt-3 text-xs text-white/70">Pesan akan dibuka di WhatsApp untuk dikirim.</p>
       </div>
     </form>
   )
