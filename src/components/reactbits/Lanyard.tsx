@@ -176,7 +176,7 @@ const ITERATIONS = 2;
 const SAMPLES = 72;
 const FOV = 24;
 const STRAP_WIDTH = 0.36;
-const RING_RADIUS = 0.095;
+const RING_RADIUS = 0.11;
 const RING_TUBE = 0.0135;
 const EYELET_RADIUS = 0.036;
 const CLAMP_BODY = 0.15;
@@ -377,8 +377,9 @@ const loadImage = (
 const cardLayout = (orientation: Orientation, cornerRadius: number): CardLayout => {
   const [width, height] = CARD_SIZES[orientation] || CARD_SIZES.portrait;
   const radius = mix(0.03, Math.min(width, height) * 0.2, clamp(cornerRadius, 0, 1));
-  const slot = { width: 0.34, height: 0.07, y: height / 2 - 0.13 };
-  const ringY = height / 2 - 0.055;
+  // lubang agak lebih besar; dasar cincin tepat di tengah lubang agar kartu terlihat tergantung dari situ
+  const slot = { width: 0.4, height: 0.09, y: height / 2 - 0.15 };
+  const ringY = slot.y + RING_RADIUS;
   return { width, height, radius, slot, ringY, hangY: ringY + RING_RADIUS };
 };
 
