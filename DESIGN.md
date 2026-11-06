@@ -1,0 +1,68 @@
+# DESIGN.md — Sistem Desain
+
+Arah: **editorial, tegas, modern**. Hitam, putih, dan biru. Karakter datang dari judul besar berfont campuran, foto/visual yang kuat, dan panel kaca (glassmorphism).
+
+Referensi dari Yosi: (1) judul serif italic + sans tebal, (2) judul sans tebal besar + serif italic, (3) palet biru-putih-hitam dengan panel kaca.
+
+## Warna
+| Token | Hex | Pakai untuk |
+|-------|-----|-------------|
+| `--black` | `#0A0A0A` | Latar gelap, teks di latar terang |
+| `--white` | `#F7F7F8` | Latar terang, teks di latar gelap |
+| `--blue` | `#2563EB` | Permukaan besar (hero/section biru), tombol utama |
+| `--sky` | `#7DD3FC` | Aksen biru muda: highlight, fokus, titik timeline |
+| `--muted` | `#737373` (terang) / `#A3A3A3` (gelap) | Teks sekunder |
+| `--border` | `#E5E5E5` (terang) / `#262626` (gelap) | Garis pemisah |
+
+**[Keputusan saya]** Hero memakai biru `--blue` atau hitam dengan foto; bagian lain bergantian putih dan hitam. Hanya biru, hitam, putih. Tidak ada gradien ungu/pink. `--sky` tidak dipakai sebagai warna teks di latar putih (kontras kurang). Teks putih di atas `--blue` lolos AA untuk teks besar.
+
+## Tipografi
+**[Keputusan saya]** Tiga font (semuanya Google Fonts):
+- **Geist** (tebal, tracking rapat) untuk judul sans dan isi.
+- **Instrument Serif** (*italic*) untuk kata-kata penekan di dalam judul.
+- **Geist Mono** untuk label kecil dan tag teknologi.
+
+Pola judul campuran (seperti referensi): satu judul, sebagian kata sans tebal, sebagian serif italic. Contoh: "**Building** *thoughtful* **web experiences**". Maks. 1-2 kata serif per judul, jangan seluruh kalimat.
+- Judul hero: `clamp(2.75rem, 8vw, 7rem)`, sans berat 600-700, tracking `-0.03em`, line-height 0.95-1.
+- Judul bagian: `clamp(1.75rem, 4vw, 3.5rem)`.
+- Isi: 16-18px, line-height 1.6, lebar baris maks. ~65 karakter.
+- Opsional: font sans condensed tebal (mis. Anton) untuk gaya referensi ke-2, hanya bila dipilih nanti.
+
+## Glassmorphism
+Dipakai hemat, hanya di atas foto/latar berwarna (di atas warna polos efeknya hilang): kartu melayang di hero, kartu project saat hover, navbar.
+```css
+background: rgb(255 255 255 / 0.12);
+backdrop-filter: blur(16px) saturate(140%);
+border: 1px solid rgb(255 255 255 / 0.25);
+border-radius: 16px;
+```
+Maks. 3-4 panel kaca per layar. Pastikan teks di atasnya tetap kontras AA. `backdrop-filter` mahal di HP, jadi kurangi blur di layar kecil.
+
+## Spasi dan tata letak
+- Skala spasi kelipatan 4px; jarak antar bagian `py-24` (desktop) / `py-16` (HP).
+- Kontainer maks. `1200px`, gutter 16px (HP) / 32px (desktop).
+- Grid project: 1 kolom (HP), 2 kolom (≥768px).
+- Radius: `12px` kartu, `9999px` tombol dan tag.
+
+## Komponen inti
+- **Button:** utama = isi `--blue` (teks putih) atau hitam; sekunder = outline. Tinggi min. 44px.
+- **Card project:** panel kaca atau putih berborder, hover: naik 4px dan border `--sky`.
+- **Tag teknologi:** pill, Geist Mono, 12px.
+- **Timeline:** garis vertikal `--border`, titik `--sky`.
+- **Link sosial:** ikon + label, fokus terlihat jelas.
+
+## Gerak (animasi)
+| Alat | Dipakai untuk |
+|------|---------------|
+| **GSAP + ScrollTrigger** | Reveal saat scroll, timeline, transisi antar bagian |
+| **React Bits** | Efek siap pakai: teks hero (mis. split/blur text), latar halus, kartu — **maks. 3-4 komponen** |
+
+Aturan:
+- Durasi 0.3-0.8 detik, easing `power2.out` / `power3.out`.
+- Hanya animasikan `transform` dan `opacity`.
+- Satu elemen = satu library animasi (jangan campur GSAP dan motion di elemen yang sama).
+- Bungkus dengan `gsap.matchMedia()` dan matikan saat `prefers-reduced-motion: reduce`.
+- Bersihkan di `useEffect` / `gsap.context()` supaya tidak bocor.
+
+## Aksesibilitas
+Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar, target sentuh ≥ 44px, urutan heading logis (satu `h1`).
