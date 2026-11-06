@@ -9,7 +9,7 @@ type Props = {
 }
 
 const base =
-  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium transition-colors'
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-7 text-base font-medium leading-none transition-colors'
 const styles = {
   primary: 'bg-blue text-white hover:bg-sky hover:text-black',
   secondary: 'border border-white/30 text-white hover:border-sky hover:text-sky',
