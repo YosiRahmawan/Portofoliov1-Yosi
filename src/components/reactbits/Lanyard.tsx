@@ -402,6 +402,19 @@ const buildGrommet = (layout: CardLayout) => {
   return geometry;
 };
 
+// Gesper plastik hitam (breakaway buckle) di tengah tali; celah tengah memperlihatkan tali di belakangnya
+const BUCKLE_AT = Math.round((SAMPLES - 1) * 0.62);
+const buildBuckleGeometry = (strapWidth: number) => {
+  const w = strapWidth * 1.22;
+  const h = 0.2;
+  const depth = 0.04;
+  const body = roundedRect(w, h, 0.03);
+  body.holes.push(roundedRect(w * 0.62, h * 0.2, 0.012));
+  const geometry = new THREE.ExtrudeGeometry(body, { depth, bevelEnabled: true, bevelThickness: 0.008, bevelSize: 0.008, bevelSegments: 2 });
+  geometry.translate(0, 0, -depth / 2);
+  return geometry;
+};
+
 const cardLayout = (orientation: Orientation, cornerRadius: number): CardLayout => {
   const [width, height] = CARD_SIZES[orientation] || CARD_SIZES.portrait;
   const radius = mix(0.03, Math.min(width, height) * 0.2, clamp(cornerRadius, 0, 1));
@@ -1058,6 +1071,12 @@ const Lanyard = ({
     clampGroup.add(clampMesh, eyelet);
     scene.add(clampGroup);
 
+    const buckleMaterial = new THREE.MeshStandardMaterial({ color: 0x24262c, roughness: 0.26, metalness: 0.3 });
+    const buckle = new THREE.Mesh(buildBuckleGeometry(STRAP_WIDTH), buckleMaterial);
+    buckle.frustumCulled = false;
+    scene.add(buckle);
+    const bk = { a: new THREE.Vector3(), t: new THREE.Vector3(), f: new THREE.Vector3(), p: new THREE.Vector3(), m: new THREE.Matrix4() };
+
     const sim = createSimulation();
     const controls: THREE.Vector3[] = [];
     const mouth = new THREE.Vector3();
@@ -1207,6 +1226,8 @@ const Lanyard = ({
       if (strapScale !== applied.strapScale) {
         clampMesh.geometry.dispose();
         clampMesh.geometry = buildClampGeometry(strapScale);
+        buckle.geometry.dispose();
+        buckle.geometry = buildBuckleGeometry(strapScale);
       }
       canvas.style.touchAction = s.interactive ? 'pan-y' : 'auto';
 
@@ -1266,6 +1287,11 @@ const Lanyard = ({
         across.copy(side).multiplyScalar(Math.cos(angle)).addScaledVector(facing, Math.sin(angle));
         facing.crossVectors(tangent, across);
         const p = points[i];
+        if (i === BUCKLE_AT) {
+          bk.a.copy(across);
+          bk.t.copy(tangent);
+          bk.p.copy(p);
+        }
         const v = (1 - i / (SAMPLES - 1)) * repeats;
         for (let c = 0; c < columns; c++) {
           const k = i * columns + c;
@@ -1291,6 +1317,11 @@ const Lanyard = ({
       work.basis.makeBasis(across, axis, facing);
       clampGroup.quaternion.setFromRotationMatrix(work.basis);
       clampGroup.position.copy(hang);
+
+      bk.f.crossVectors(bk.a, bk.t).normalize();
+      bk.m.makeBasis(bk.a, bk.t, bk.f);
+      buckle.quaternion.setFromRotationMatrix(bk.m);
+      buckle.position.copy(bk.p);
     };
 
     const render = () => {
@@ -1479,8 +1510,8 @@ const Lanyard = ({
       canvas.removeEventListener('pointercancel', onPointerUp);
       canvas.removeEventListener('lostpointercapture', onPointerUp);
       canvas.removeEventListener('touchstart', onTouchStart);
-      [bodyMesh, frontMesh, backMesh, ring, clampMesh, eyelet, band].forEach(mesh => mesh.geometry?.dispose());
-      [frontMaterial, backMaterial, edgeMaterial, metalMaterial, bandMaterial].forEach(material => material.dispose());
+      [bodyMesh, frontMesh, backMesh, ring, clampMesh, eyelet, band, buckle].forEach(mesh => mesh.geometry?.dispose());
+      [frontMaterial, backMaterial, edgeMaterial, metalMaterial, bandMaterial, buckleMaterial].forEach(material => material.dispose());
       [frontTexture, backTexture, strapTexture, grain, weave].forEach(texture => texture.dispose());
       environment.dispose();
       renderer.dispose();

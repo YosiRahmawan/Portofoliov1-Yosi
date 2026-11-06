@@ -2,6 +2,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { profile } from '../../data/profile'
 import { makeIdCardFace } from '../../lib/idCardFace'
+import { makeStrapTexture } from '../../lib/strapTexture'
 import { socials } from '../../data/socials'
 import { useReveal } from '../../hooks/useReveal'
 import { ContactForm } from '../ui/ContactForm'
@@ -28,8 +29,11 @@ export function Contact() {
   useReveal(ref)
   const near = useNearViewport(cardRef)
   const [face, setFace] = useState<string>()
+  const [strap, setStrap] = useState<string>()
   useEffect(() => {
-    if (near && !face) makeIdCardFace().then(setFace, () => setFace(profile.photo))
+    if (!near || face) return
+    makeStrapTexture().then(setStrap, () => {})
+    makeIdCardFace().then(setFace, () => setFace(profile.photo))
   }, [near, face])
 
   return (
@@ -39,7 +43,7 @@ export function Contact() {
           {near && face && (
             <Suspense fallback={null}>
               {/* kanvas naik sampai tepi atas section (setara padding py-16/md:py-24) agar tali tergantung dari atas */}
-              <Lanyard frontImage={face} backImage={face} size={0.7} strapLength={0.3} strapWidth={0.45} className="absolute inset-x-0 bottom-0 -top-16 md:-top-24" />
+              <Lanyard frontImage={face} backImage={face} strapImage={strap} size={0.7} strapLength={0.3} strapWidth={0.45} className="absolute inset-x-0 bottom-0 -top-16 md:-top-24" />
             </Suspense>
           )}
         </div>

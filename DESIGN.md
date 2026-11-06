@@ -86,3 +86,4 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - Muka kartu digambar di canvas (`src/lib/idCardFace.ts`) dari `profile` (foto, nama) dan `profile.idCard` (band, title, line, tag), lalu dipakai sebagai tekstur `Lanyard`. Ubah teks kartu di `src/data/profile.ts`.
 - Proporsi kartu 1.45 x 2.35 (`CARD_SIZES.portrait` di Lanyard.tsx) harus sama dengan `W`/`H` di `idCardFace.ts`. Tali hitam, `strapWidth` 0.45, `size` 0.7, `strapLength` 0.3 agar kartu muat di kanvas.
 - Kanvas Lanyard naik sampai tepi atas section supaya tali tergantung dari atas; cincin bertumpu di tepi atas lubang kartu (pelat logam di sekeliling lubang).
+- Tali: hitam dengan cetak teks (`src/lib/strapTexture.ts`: nama dan peran dari `profile`, jahitan putus-putus di tepi, serat anyaman) dan gesper plastik arang di 62% panjang tali (`BUCKLE_AT` di Lanyard.tsx).
