@@ -102,3 +102,4 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - `ErrorBoundary` membungkus app dan bagian 3D: tanpa WebGL, halaman tetap tampil tanpa bola.
 - `useHashScroll` menggulir ulang ke anchor (#contact, klik navbar) beberapa kali sesudah section termuat, karena tinggi halaman berubah saat section dimuat bertahap; berhenti bila pengunjung menggulir sendiri.
 - Hasil ukur Lighthouse (build produksi): desktop performance 99, mobile 78-81 (naik dari 59 dan 53); accessibility, best-practices, SEO semuanya 100. Sisa beban mobile: skrip awal (React, GSAP, SplitText) dan CSS yang menahan render.
+- Timeline Journey: garis biru terisi turun mengikuti scroll (`useTimelineProgress`, scaleY dengan easing 0.14) dan titik menyala saat ujung garis melewatinya; ujung garis berada di 60% tinggi layar. Reduced motion: garis langsung mengikuti posisi tanpa easing.
