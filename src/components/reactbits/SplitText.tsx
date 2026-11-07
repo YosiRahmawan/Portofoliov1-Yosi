@@ -354,6 +354,7 @@ const SplitText = ({
         smartWrap: true,
         autoSplit: splitType === 'lines',
         mask: mask ? unit : undefined,
+        aria: 'hidden', // label dipasang oleh pemanggil di elemen judul; aria-label di span tidak valid
         linesClass: 'split-line',
         wordsClass: 'split-word',
         charsClass: 'split-char',

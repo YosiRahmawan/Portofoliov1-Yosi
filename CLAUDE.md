@@ -16,7 +16,7 @@ Baca `PRD.md`, `DESIGN.md`, dan `ARCHITECTURE.md` sebelum mengubah apa pun. Keti
 - Komentar hanya untuk "kenapa", bukan "apa".
 
 ## Aturan animasi
-- GSAP untuk scroll/timeline; React Bits untuk efek siap pakai (maks. 3-4).
+- GSAP untuk scroll/timeline; React Bits untuk efek siap pakai (sekarang 6: SplitText, SpotlightCard, SpecularButton, ScrollVelocity, RubberSegment, Lanyard; tambah baru hanya bila perlu).
 - Satu elemen = satu library animasi.
 - Wajib: cleanup (`gsap.context`) dan dukung `prefers-reduced-motion`.
 - Hanya animasikan `transform` dan `opacity`.

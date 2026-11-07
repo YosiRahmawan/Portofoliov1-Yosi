@@ -2,6 +2,8 @@ export type Project = {
   title: string
   description: string
   image: string
+  // versi kecil (800px) untuk kartu; kosong = pakai image
+  cover?: string
   // gambar tambahan untuk jendela detail; details = paragraf artikel di jendela detail
   gallery?: string[]
   details?: string[]
@@ -20,6 +22,7 @@ export const projects: Project[] = [
     description:
       'Sistem digital perizinan penyerahan PSU (prasarana, sarana, dan utilitas) perumahan Kota Tasikmalaya: aplikasi mobile Flutter untuk pengembang dan tim lapangan, serta portal web untuk verifikator Disperwaskim.',
     image: shot('satu-rumah-dashboard'),
+    cover: shot('satu-rumah-dashboard-card'),
     gallery: [shot('satu-rumah-dashboard'), shot('satu-rumah-mobile'), shot('satu-rumah-login')],
     details: [
       'SATU RUMAH (Sistem Aplikasi Terpadu Urusan Rumah) mendigitalkan penyerahan PSU perumahan dari pengembang kepada Pemerintah Kota Tasikmalaya melalui Dinas Perumahan dan Kawasan Permukiman (Disperwaskim).',
@@ -34,6 +37,7 @@ export const projects: Project[] = [
     description:
       'Aplikasi web pengelolaan pembayaran SPP, daftar ulang, dan jemputan siswa SDIT Abu Bakar Ash Shiddiq Rajapolah, dengan pembayaran QRIS dan peringatan tunggakan. Backend sudah selesai dan teruji, antarmuka berjalan untuk peran admin, keuangan, dan yayasan.',
     image: shot('siapa-keuangan'),
+    cover: shot('siapa-keuangan-card'),
     gallery: [shot('siapa-keuangan'), shot('siapa-login'), shot('siapa-pengguna'), shot('siapa-laporan')],
     details: [
       'Mengelola pembayaran SPP, daftar ulang, dan jemputan siswa SDIT Abu Bakar Ash Shiddiq Rajapolah, baik manual maupun QRIS, lengkap dengan peringatan tunggakan. NIS menjadi primary key siswa.',
@@ -48,6 +52,7 @@ export const projects: Project[] = [
     description:
       'Kantor virtual berbasis AI: peta isometrik interaktif, task board kanban, approval inbox, dan dashboard untuk satu CEO dan tim agen. Eksekusi AI belum tersambung, langkah task masih simulasi.',
     image: shot('204-office'),
+    cover: shot('204-office-card'),
     gallery: [shot('204-office'), shot('204-team'), shot('204-overview')],
     details: [
       'Kantor virtual untuk satu CEO manusia dan tim agen AI yang direncanakan. Sudah ada peta isometrik interaktif dengan tujuh karakter, task board kanban, approval inbox, riwayat dan log, dashboard ringkasan, lampiran file, serta login untuk pemilik.',
@@ -62,6 +67,7 @@ export const projects: Project[] = [
     description:
       'SIMPEG, sistem penilaian kinerja guru untuk MTs Jidris As-Salam: admin mengelola data user, guru, jabatan, kriteria, kompetensi, dan indikator, lalu memantau penilaian lewat dashboard. Tugas project kampus dengan Laravel dan aplikasi Flutter pendamping.',
     image: shot('pkg-dashboard'),
+    cover: shot('pkg-dashboard-card'),
     gallery: [shot('pkg-dashboard'), shot('pkg-guru'), shot('pkg-login')],
     details: [
       'SIMPEG (Sistem Penilaian Kinerja Guru) dibuat untuk MTs Jidris As-Salam sebagai tugas project kampus atas permintaan customer.',

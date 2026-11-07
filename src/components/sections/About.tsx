@@ -25,7 +25,7 @@ export function About() {
         <div className="mt-12 grid gap-10 md:grid-cols-[minmax(0,320px)_1fr] md:gap-14">
           <div data-reveal className="overflow-hidden rounded-2xl bg-linear-to-b from-ink to-blue shadow-xl">
             <img
-              src="/images/hero-reveal.webp"
+              src="/images/about.webp"
               alt={`Photo of ${profile.name}`}
               loading="lazy"
               className="aspect-[3/4] w-full object-cover object-top"

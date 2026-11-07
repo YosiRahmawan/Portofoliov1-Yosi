@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { profile } from '../../data/profile'
 import { useSpotlight } from '../../hooks/useSpotlight'
+import { waUrl } from '../../lib/whatsapp'
 import SplitText from '../reactbits/SplitText'
 import { Button } from '../ui/Button'
 import { DownloadCvButton } from '../ui/DownloadCvButton'
@@ -12,7 +13,7 @@ const photo = 'absolute inset-0 bg-cover bg-no-repeat [background-position:cente
 export function Hero() {
   const reveal = useRef<HTMLDivElement>(null)
   useSpotlight(reveal)
-  const wa = profile.whatsapp ? `https://wa.me/${profile.whatsapp}?text=Halo%20${profile.name}` : undefined
+  const wa = profile.whatsapp ? waUrl(profile.whatsapp, `Halo ${profile.name}`) : undefined
 
   return (
     <section id="hero" className="relative isolate h-svh min-h-[640px] overflow-hidden hero-bg">
@@ -38,7 +39,7 @@ export function Hero() {
         <p className="hero-rise font-mono text-[11px] font-semibold tracking-[0.12em] text-white/90 sm:text-xs" style={{ animationDelay: '0.15s' }}>
           {profile.role.toUpperCase()}
         </p>
-        <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-5xl md:text-6xl">
+        <h1 aria-label="Building thoughtful web experiences." className="mt-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-5xl md:text-6xl">
           <SplitText tag="span" text="Building" textAlign="left" />{' '}
           <Em>thoughtful</Em>
           <br />

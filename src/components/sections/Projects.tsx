@@ -74,7 +74,7 @@ export function Projects() {
                       <div className="flex h-full flex-col">
                         {p.image && (
                           <div className="relative -mx-8 -mt-8">
-                            <img src={p.image} alt={p.title} loading="lazy" className="aspect-video w-full object-cover" />
+                            <img src={p.cover ?? p.image} alt={p.title} loading="lazy" className="aspect-video w-full object-cover" />
                             <div aria-hidden className="cover-blur absolute inset-x-0 bottom-0 h-1/2" />
                             <div aria-hidden className="cover-fade absolute inset-x-0 bottom-0 h-3/4" />
                           </div>

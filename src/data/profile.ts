@@ -37,7 +37,6 @@ export const profile = {
   email: 'yosirahmawannn@gmail.com',
   location: '',
   skillGroups,
-  skills: Object.values(skillGroups).flat(),
   // angka di busur statistik hero
   stats: [
     { value: String(Object.values(skillGroups).flat().length), suffix: '+', label: 'SKILLS' },

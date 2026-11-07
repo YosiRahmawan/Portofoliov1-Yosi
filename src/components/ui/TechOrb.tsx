@@ -40,7 +40,12 @@ export function TechOrb({ className = '' }: { className?: string }) {
     if (!el) return
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    } catch {
+      return // tanpa WebGL: bola tidak tampil, kartu tetap terbaca
+    }
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
     renderer.domElement.style.cssText = 'display:block;width:100%;height:100%'
     el.appendChild(renderer.domElement)

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { profile } from '../../data/profile'
+import { ErrorBoundary } from './ErrorBoundary'
 import { TechCard } from './TechCard'
 
 // three.js hanya dimuat saat tab Tech Stack dibuka
@@ -23,9 +24,9 @@ export function TechConstellation() {
         {LEFT.map(([t, items]) => <TechCard key={t} title={t} items={items} side="left" />)}
       </div>
       <div className="relative order-1 h-60 md:order-none md:h-[340px]">
-        <Suspense fallback={null}>
+        <ErrorBoundary><Suspense fallback={null}>
           <TechOrb className="pointer-events-none absolute -inset-y-12 inset-x-0 md:-inset-14" />
-        </Suspense>
+        </Suspense></ErrorBoundary>
       </div>
       <div className="order-3 grid gap-6 md:order-none">
         {RIGHT.map(([t, items]) => <TechCard key={t} title={t} items={items} side="right" />)}

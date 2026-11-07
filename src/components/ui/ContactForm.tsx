@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react'
 import { profile } from '../../data/profile'
+import { contactMessage, waUrl } from '../../lib/whatsapp'
 
 const field =
   'w-full border-0 border-b border-white/50 bg-transparent py-2 text-white placeholder:text-white/60 focus:border-white focus:outline-none'
@@ -9,13 +10,9 @@ export function ContactForm() {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const d = new FormData(e.currentTarget)
-    const text = [
-      `Halo ${profile.name}, saya ${d.get('name')}${d.get('email') ? ` (${d.get('email')})` : ''}.`,
-      `Subjek: ${d.get('subject')}`,
-      '',
-      d.get('message'),
-    ].join('\n')
-    window.open(`https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+    const val = (k: string) => String(d.get(k) ?? '')
+    const text = contactMessage(profile.name, { name: val('name'), email: val('email'), subject: val('subject'), message: val('message') })
+    window.open(waUrl(profile.whatsapp, text), '_blank', 'noopener,noreferrer')
   }
 
   const off = !profile.whatsapp

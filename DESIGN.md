@@ -93,3 +93,12 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - `gallery` dan `details` (paragraf artikel) di `src/data/projects.ts` muncul di jendela detail (`ProjectViewer`, tombol "Details"); tombol hanya ada bila salah satunya terisi. Tangkapan layar dipotong dari bilah tab browser dan taskbar, lalu disimpan sebagai WebP di `public/images/projects/`.
 - Deskripsi di kartu project dipotong empat baris dengan "..." (`line-clamp-4`) supaya tinggi kartu seragam; teks lengkap ada di jendela Details. Klik gambar di Details membuka layar penuh (dialog terpisah, Esc hanya menutup gambar besar).
 - Logo teknologi project dipetakan di `src/data/techIcons.ts` (TypeScript, SQLite, Fastify dari simple-icons; Riverpod, Canva, REST API, Provider memakai ikon umum karena tidak punya logo merek).
+
+## Performa
+- Hanya Hero, Navbar, dan Footer yang masuk unduhan pertama; Marquee, About, Projects, Journey, Contact dimuat saat mendekati layar (`Deferred` di `App.tsx`, penahan tempat membawa id anchor). Komponen 3D dan CV PDF dimuat lazy.
+- Font di-host sendiri lewat `@fontsource` (Geist Variable, Geist Mono Variable, Instrument Serif italic); nama keluarga canvas kartu ID dan tali memakai "Geist Variable".
+- Animasi hero hanya menggeser (tanpa opacity 0) agar paragraf hero jadi kandidat LCP sejak render pertama.
+- Sampul kartu project memakai versi 800px (`*-card.webp`), foto About memakai `about.webp` (640px).
+- `ErrorBoundary` membungkus app dan bagian 3D: tanpa WebGL, halaman tetap tampil tanpa bola.
+- `useHashScroll` menggulir ulang ke anchor (#contact, klik navbar) beberapa kali sesudah section termuat, karena tinggi halaman berubah saat section dimuat bertahap; berhenti bila pengunjung menggulir sendiri.
+- Hasil ukur Lighthouse (build produksi): desktop performance 99, mobile 78-81 (naik dari 59 dan 53); accessibility, best-practices, SEO semuanya 100. Sisa beban mobile: skrip awal (React, GSAP, SplitText) dan CSS yang menahan render.

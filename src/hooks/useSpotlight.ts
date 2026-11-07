@@ -13,6 +13,11 @@ export function useSpotlight(layer: RefObject<HTMLElement | null>) {
     const cur = coarse ? { x: rect().width * 0.5, y: rect().height * 0.45 } : { x: -999, y: -999 }
     const goal = { ...cur }
     let raf = 0
+    let visible = true
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting
+    })
+    io.observe(target)
 
     const onMove = (e: PointerEvent) => {
       const r = rect()
@@ -28,6 +33,10 @@ export function useSpotlight(layer: RefObject<HTMLElement | null>) {
     }
 
     const tick = (t: number) => {
+      if (!visible) {
+        raf = requestAnimationFrame(tick)
+        return
+      }
       if (coarse && !reduce) {
         const r = rect()
         goal.x = r.width * (0.5 + 0.25 * Math.sin(t / 1800))
@@ -47,6 +56,7 @@ export function useSpotlight(layer: RefObject<HTMLElement | null>) {
 
     return () => {
       cancelAnimationFrame(raf)
+      io.disconnect()
       window.removeEventListener('pointermove', onMove)
       document.documentElement.removeEventListener('pointerleave', onLeave)
     }

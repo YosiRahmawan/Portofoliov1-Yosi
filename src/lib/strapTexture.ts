@@ -6,7 +6,7 @@ const ACROSS = 192
 const ALONG = 1280
 
 export async function makeStrapTexture(): Promise<string> {
-  await document.fonts.load('700 80px Geist')
+  await document.fonts.load('700 80px "Geist Variable"')
   const canvas = document.createElement('canvas')
   canvas.width = ALONG
   canvas.height = ACROSS
@@ -36,11 +36,11 @@ export async function makeStrapTexture(): Promise<string> {
   const GAP = 0.55 // jarak antar bagian, dalam satuan tinggi font
   let size = 70
   const widthAt = (s: number) => {
-    c.font = `700 ${s}px Geist, system-ui, sans-serif`
+    c.font = `700 ${s}px "Geist Variable", system-ui, sans-serif`
     return parts.reduce((w, [t]) => w + c.measureText(t).width, 0) + parts.length * GAP * s
   }
   size = (size * ALONG) / widthAt(size) // pas satu ubin
-  c.font = `700 ${size}px Geist, system-ui, sans-serif`
+  c.font = `700 ${size}px "Geist Variable", system-ui, sans-serif`
   c.textBaseline = 'middle'
   let x = (GAP * size) / 2
   for (const [t, color] of parts) {

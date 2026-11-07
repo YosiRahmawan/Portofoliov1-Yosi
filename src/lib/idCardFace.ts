@@ -21,12 +21,12 @@ const loadImage = (src: string) =>
 
 // Menggambar muka kartu ID (foto, nama, peran, pita biru vertikal) sebagai data URL untuk tekstur kartu 3D
 export async function makeIdCardFace(): Promise<string> {
-  const [photo] = await Promise.all([loadImage(profile.photo), document.fonts.load('700 48px Geist'), document.fonts.load('500 32px Geist')])
+  const [photo] = await Promise.all([loadImage(profile.photo), document.fonts.load('700 48px "Geist Variable"'), document.fonts.load('500 32px "Geist Variable"')])
   const canvas = document.createElement('canvas')
   canvas.width = W
   canvas.height = H
   const c = canvas.getContext('2d')!
-  const font = (w: number, s: number) => `${w} ${s}px Geist, system-ui, sans-serif`
+  const font = (w: number, s: number) => `${w} ${s}px "Geist Variable", system-ui, sans-serif`
 
   // bingkai plastik bening di luar, kartu putih di dalam
   c.fillStyle = '#e9edf3'

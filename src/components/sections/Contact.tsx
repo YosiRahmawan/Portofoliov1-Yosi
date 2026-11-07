@@ -6,6 +6,7 @@ import { makeStrapTexture } from '../../lib/strapTexture'
 import { socials } from '../../data/socials'
 import { useReveal } from '../../hooks/useReveal'
 import { ContactForm } from '../ui/ContactForm'
+import { ErrorBoundary } from '../ui/ErrorBoundary'
 import { Em, SectionTitle } from '../ui/Heading'
 
 // three.js dimuat hanya saat bagian ini mendekati layar
@@ -41,10 +42,10 @@ export function Contact() {
       <div className="mx-auto grid max-w-[1200px] items-center gap-10 md:grid-cols-2">
         <div ref={cardRef} className="relative h-[420px] md:h-[600px]" aria-hidden>
           {near && face && (
-            <Suspense fallback={null}>
+            <ErrorBoundary><Suspense fallback={null}>
               {/* kanvas naik sampai tepi atas section (setara padding py-16/md:py-24) agar tali tergantung dari atas */}
               <Lanyard frontImage={face} backImage={face} strapImage={strap} size={0.7} strapLength={0.3} strapWidth={0.45} className="absolute inset-x-0 bottom-0 -top-16 md:-top-24" />
-            </Suspense>
+            </Suspense></ErrorBoundary>
           )}
         </div>
         <div>
