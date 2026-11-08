@@ -13,7 +13,6 @@ export const profile = {
   role: 'Full-Stack Developer',
   // judul hero; accent tampil dengan huruf miring serif
   headline: { line1: 'Where Ideas', line2: 'Become', accent: 'Innovation.' },
-  availability: 'Terbuka untuk proyek freelance dan kolaborasi.',
   // singkat, untuk hero
   intro: 'Mahasiswa Sistem Informasi yang membangun sistem efisien, mudah dipahami, dan tampil rapi.',
   bio: 'Saya Yosi, mahasiswa Sistem Informasi semester 5 di UBSI Tasikmalaya. Saat ini saya magang di Diskominfo Kota Tasikmalaya, mengerjakan UI/UX, frontend, backend, dan aplikasi mobile. Fokus saya adalah sistem yang efisien dan mudah dipahami pengguna.',
