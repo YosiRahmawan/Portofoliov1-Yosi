@@ -40,17 +40,17 @@ export const projects: Project[] = [
   {
     title: 'SIAPA',
     description:
-      'Aplikasi web pengelolaan pembayaran SPP, daftar ulang, dan jemputan siswa SDIT Abu Bakar Ash Shiddiq Rajapolah, dengan pembayaran QRIS dan peringatan tunggakan. Backend sudah selesai dan teruji, antarmuka berjalan untuk peran admin, keuangan, dan yayasan.',
+      'Aplikasi web pengelolaan pembayaran SPP, daftar ulang, dan jemputan siswa SDIT Abu Bakar Ash Shiddiq Rajapolah, dengan pembayaran QRIS dan peringatan tunggakan. Saya mengerjakan UI/UX dan antarmuka web (frontend) untuk peran admin, keuangan, dan yayasan.',
     image: shot('siapa-keuangan'),
     cover: shot('siapa-keuangan-card'),
     gallery: [shot('siapa-keuangan'), shot('siapa-login'), shot('siapa-pengguna'), shot('siapa-laporan')],
     details: [
       'Mengelola pembayaran SPP, daftar ulang, dan jemputan siswa SDIT Abu Bakar Ash Shiddiq Rajapolah, baik manual maupun QRIS, lengkap dengan peringatan tunggakan. NIS menjadi primary key siswa.',
       'Ada empat peran: Admin, Kepala Sekolah atau Yayasan, Petugas Keuangan, dan Siswa (orang tua). Pembayaran dan jemputan diinput oleh Petugas Keuangan, pembayaran QRIS dikonfirmasi petugas, dan laporan dapat diekspor sebagai CSV yang dibuka di Excel.',
-      'Backend sudah selesai dan teruji (52 tes): login dan role, pengguna dan siswa, tagihan, pembayaran manual dan QRIS, pembatalan, peringatan jatuh tempo, laporan, dan audit log. Database memakai Supabase (PostgreSQL).',
+      'Backend sudah selesai dan teruji (52 tes), di luar bagian saya: login dan role, pengguna dan siswa, tagihan, pembayaran manual dan QRIS, pembatalan, peringatan jatuh tempo, laporan, dan audit log. Database memakai Supabase (PostgreSQL). Bagian saya adalah UI/UX dan frontend.',
     ],
     role: 'Frontend Developer & UI/UX Designer',
-    contributions: ['Membangun tampilan web (frontend)', 'Merancang UI/UX'],
+    contributions: ['Merancang UI/UX', 'Membangun antarmuka web (frontend) untuk peran admin, keuangan, dan yayasan'],
     tech: ['Laravel', 'PHP', 'Supabase'],
     repoUrl: gh('Project-SIAPA'),
   },

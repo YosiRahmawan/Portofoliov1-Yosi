@@ -1,3 +1,5 @@
+import { projects } from './projects'
+
 const skillGroups: Record<string, string[]> = {
   Design: ['Figma', 'Canva'],
   Frontend: ['React', 'Next.js', 'Vite', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
@@ -18,15 +20,12 @@ export const profile = {
   photo: '/images/profile.jpg',
   approach:
     'Tampilan yang baik dan sistem yang baik saling menguatkan. Saya merancang antarmuka yang menarik tanpa mengorbankan kesederhanaan sistem: alur yang jelas, performa yang cepat, dan kode yang mudah dikembangkan. Desain saya buat di Figma, lalu saya implementasikan dengan React, Next.js, Laravel, Supabase, dan Flutter.',
-  // baris di Personal Details; baris dengan value kosong tidak ditampilkan
+  // baris di Personal Details; baris dengan value kosong tidak ditampilkan. Email dan WhatsApp sengaja tidak ditampilkan di web (hanya di CV dan tombol WhatsApp)
   details: [
     { label: 'Name', value: 'Yosi Rahmawan' },
-    { label: 'Place of birth', value: 'Ciamis, Indonesia' },
+    { label: 'Location', value: 'West Java, Indonesia' },
     { label: 'University', value: 'UBSI Tasikmalaya, S1 Sistem Informasi' },
     { label: 'Internship', value: 'Diskominfo Kota Tasikmalaya' },
-    { label: 'Email', value: 'yosirahmawannn@gmail.com' },
-    { label: 'WhatsApp', value: '+62 882002838322' },
-    { label: 'Location', value: '' },
   ],
   // teks di kartu ID 3D (bagian Contact)
   idCard: {
@@ -39,12 +38,12 @@ export const profile = {
   whatsapp: '62882002838322',
   // opsional; kosong = tidak ditampilkan di CV
   email: 'yosirahmawannn@gmail.com',
-  location: '',
+  location: 'West Java, Indonesia',
   skillGroups,
   // angka di busur statistik hero
   stats: [
     { value: String(Object.values(skillGroups).flat().length), suffix: '+', label: 'SKILLS' },
     { value: '2', suffix: '', label: 'INTERNSHIPS' },
-    { value: '5', suffix: '', label: 'SEMESTER' },
+    { value: String(projects.length), suffix: '', label: 'PROJECTS' },
   ],
 }

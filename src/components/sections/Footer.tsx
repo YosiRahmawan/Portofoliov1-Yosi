@@ -17,7 +17,7 @@ export function Footer() {
           <p className="mt-4 max-w-xs">{profile.availability}</p>
         </div>
         <nav aria-label="Footer">
-          <p className={col}>Navigasi</p>
+          <p className={col}>Navigation</p>
           <ul className="mt-2">
             {links.map(([label, href]) => (
               <li key={href}><a href={href} className={item}>{label}</a></li>
@@ -25,7 +25,7 @@ export function Footer() {
           </ul>
         </nav>
         <div>
-          <p className={col}>Sosial</p>
+          <p className={col}>Social</p>
           <ul className="mt-2">
             {socials.filter((s) => s.url).map((s) => (
               <li key={s.label}><a href={s.url} target="_blank" rel="noopener noreferrer" className={item}>{s.label}</a></li>
