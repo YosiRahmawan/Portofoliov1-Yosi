@@ -22,7 +22,7 @@ Referensi dari Yosi: (1) judul serif italic + sans tebal, (2) judul sans tebal b
 - **Instrument Serif** (*italic*) untuk kata-kata penekan di dalam judul.
 - **Geist Mono** untuk label kecil dan tag teknologi.
 
-Pola judul campuran (seperti referensi): satu judul, sebagian kata sans tebal, sebagian serif italic. Contoh: "**Building** *thoughtful* **web experiences**". Maks. 1-2 kata serif per judul, jangan seluruh kalimat.
+Pola judul campuran (seperti referensi): satu judul, sebagian kata sans tebal, sebagian serif italic. Contoh: "**Where Ideas** **Become** *Innovation.*". Maks. 1-2 kata serif per judul, jangan seluruh kalimat.
 - Judul hero: `clamp(2.75rem, 8vw, 7rem)`, sans berat 600-700, tracking `-0.03em`, line-height 0.95-1.
 - Judul bagian: `clamp(1.75rem, 4vw, 3.5rem)`.
 - Isi: 16-18px, line-height 1.6, lebar baris maks. ~65 karakter.
@@ -103,3 +103,7 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 - `useHashScroll` menggulir ulang ke anchor (#contact, klik navbar) beberapa kali sesudah section termuat, karena tinggi halaman berubah saat section dimuat bertahap; berhenti bila pengunjung menggulir sendiri.
 - Hasil ukur Lighthouse (build produksi): desktop performance 99, mobile 78-81 (naik dari 59 dan 53); accessibility, best-practices, SEO semuanya 100. Sisa beban mobile: skrip awal (React, GSAP, SplitText) dan CSS yang menahan render.
 - Timeline Journey: garis biru terisi turun mengikuti scroll (`useTimelineProgress`, scaleY dengan easing 0.14) dan titik menyala saat ujung garis melewatinya; ujung garis berada di 60% tinggi layar. Reduced motion: garis langsung mengikuti posisi tanpa easing.
+
+## Teks About dan glow kursor
+- Paragraf di About memakai `ScrollText`: kata samar (opacity 0.18) lalu menyala berurutan mengikuti scroll (GSAP scrub). Reduced motion: teks langsung penuh.
+- Section Projects (tab Projects, Certificates, Tech Stack) dibungkus `GlowZone`: efek React Bits GlowCursor, hanya untuk perangkat dengan mouse dan tanpa reduced motion. Tanpa WebGL2 efeknya diam-diam tidak muncul.

@@ -7,6 +7,7 @@ import SpotlightCard from '../reactbits/SpotlightCard'
 import { Carousel } from '../ui/Carousel'
 import { CertificateGrid } from '../ui/CertificateGrid'
 import { CertificateViewer } from '../ui/CertificateViewer'
+import { GlowZone } from '../ui/GlowZone'
 import { Em, SectionTitle } from '../ui/Heading'
 import { ProjectViewer } from '../ui/ProjectViewer'
 import { Tag } from '../ui/Tag'
@@ -40,7 +41,8 @@ export function Projects() {
   useReveal(ref)
 
   return (
-    <section ref={ref} id="projects" aria-labelledby="projects-title" className="px-4 py-16 sm:px-8 md:py-24">
+    <section ref={ref} id="projects" aria-labelledby="projects-title">
+      <GlowZone className="px-4 py-16 sm:px-8 md:py-24">
       <div className="mx-auto max-w-[1200px]">
         <div data-reveal className="text-center">
           <SectionTitle id="projects-title">Selected <Em>work</Em></SectionTitle>
@@ -135,6 +137,7 @@ export function Projects() {
           </div>
         </div>
       </div>
+      </GlowZone>
       <CertificateViewer items={certificates} index={viewing} onChange={setViewing} />
       <ProjectViewer project={openProject} onClose={() => setOpenProject(null)} />
     </section>

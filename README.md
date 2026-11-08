@@ -24,6 +24,6 @@ npm test         # tes (vitest)
 Edit file di `src/data/` (`profile.ts`, `projects.ts`, `certificates.ts`, `journey.ts`, `socials.ts`, `techIcons.ts`). Gambar project di `public/images/projects/`, sertifikat di `public/images/certificates/`. CV dibuat otomatis (PDF) dari data yang sama lewat tombol Download CV; isi `email` dan `location` di `profile.ts` bila mau ditampilkan, dan `bullets` di `journey.ts` untuk poin tugas.
 
 ## Status
-Situs berjalan dan sudah terisi: 4 project, 9 sertifikat, tech stack, journey, kartu ID 3D, dan CV PDF satu halaman. Belum diisi: poin tugas tiap magang (`bullets`), domisili (`location`), dan `og:url`/canonical (menunggu domain deploy).
+Situs berjalan dan sudah terisi: 4 project, 13 sertifikat, tech stack, journey, kartu ID 3D, dan CV PDF satu halaman. Belum diisi: poin tugas tiap magang (`bullets`), domisili (`location`), dan `og:url`/canonical (menunggu domain deploy).
 
 CI (`.github/workflows/ci.yml`) menjalankan build dan tes di setiap push.

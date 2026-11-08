@@ -35,18 +35,21 @@ export function Hero() {
 
       <StatsArc />
 
-      <div className="absolute bottom-12 left-5 z-40 max-w-[300px] sm:bottom-16 sm:left-8 sm:max-w-md md:bottom-20 md:left-12">
+      <div className="absolute bottom-12 left-5 z-40 max-w-[300px] sm:bottom-16 sm:left-8 sm:max-w-xl md:bottom-20 md:left-12">
         <p className="hero-rise font-mono text-[11px] font-semibold tracking-[0.12em] text-white/90 sm:text-xs" style={{ animationDelay: '0.15s' }}>
           {profile.role.toUpperCase()}
         </p>
-        <h1 aria-label="Building thoughtful web experiences." className="mt-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-5xl md:text-6xl">
-          <SplitText tag="span" text="Building" textAlign="left" />{' '}
-          <Em>thoughtful</Em>
+        <h1 aria-label={`${profile.headline.line1} ${profile.headline.line2} ${profile.headline.accent}`} className="mt-3 text-4xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-5xl md:text-6xl">
+          <SplitText tag="span" text={profile.headline.line1} textAlign="left" />
           <br />
-          <SplitText tag="span" text="web experiences." textAlign="left" />
+          {/* flex + baseline: SplitText memakai overflow-hidden sehingga baseline-nya turun bila sebaris biasa */}
+          <span className="inline-flex flex-wrap items-baseline gap-x-[0.25em]">
+            <SplitText tag="span" text={profile.headline.line2} textAlign="left" />
+            <Em>{profile.headline.accent}</Em>
+          </span>
         </h1>
-        <p className="hero-rise mt-4 text-sm leading-relaxed text-white/90 sm:text-base" style={{ animationDelay: '0.5s' }}>
-          {profile.bio}
+        <p className="hero-rise mt-4 max-w-md text-sm leading-relaxed text-white/90 sm:text-base" style={{ animationDelay: '0.5s' }}>
+          {profile.intro}
         </p>
         <div className="hero-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: '0.7s' }}>
           <Button variant="light" href={wa}>Contact me on WhatsApp</Button>

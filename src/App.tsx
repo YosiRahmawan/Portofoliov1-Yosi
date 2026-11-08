@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from 'rea
 import { Footer } from './components/sections/Footer'
 import { Hero } from './components/sections/Hero'
 import { Navbar } from './components/sections/Navbar'
+import { Loader } from './components/ui/Loader'
 import { ErrorBoundary } from './components/ui/ErrorBoundary'
 import { useHashScroll } from './hooks/useHashScroll'
 
@@ -53,6 +54,7 @@ export default function App() {
       <a href="#main" className="sr-only z-[60] rounded-full bg-white px-4 py-2 text-sm text-black focus:not-sr-only focus:fixed focus:top-3 focus:left-3">
         Lewati ke konten
       </a>
+      <Loader />
       <Navbar />
       <main id="main">
         <Hero />

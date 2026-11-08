@@ -9,11 +9,15 @@ const skillGroups: Record<string, string[]> = {
 export const profile = {
   name: 'Yosi Rahmawan',
   role: 'Full-Stack Developer',
-  bio: 'Mahasiswa Sistem Informasi semester 5 di UBSI Tasikmalaya. Saat ini magang di Diskominfo Kota Tasikmalaya, mengerjakan UI/UX, frontend, backend, dan aplikasi mobile.',
+  // judul hero; accent tampil dengan huruf miring serif
+  headline: { line1: 'Where Ideas', line2: 'Become', accent: 'Innovation.' },
+  availability: 'Terbuka untuk proyek freelance dan kolaborasi.',
+  // singkat, untuk hero
+  intro: 'Mahasiswa Sistem Informasi yang membangun sistem efisien, mudah dipahami, dan tampil rapi.',
+  bio: 'Saya Yosi, mahasiswa Sistem Informasi semester 5 di UBSI Tasikmalaya. Saat ini saya magang di Diskominfo Kota Tasikmalaya, mengerjakan UI/UX, frontend, backend, dan aplikasi mobile. Fokus saya adalah sistem yang efisien dan mudah dipahami pengguna.',
   photo: '/images/profile.jpg',
-  // draf: sesuaikan dengan caramu bekerja
   approach:
-    'Saya merancang antarmuka di Figma lalu membangunnya sendiri: frontend dengan React dan Next.js, backend dengan Laravel dan Supabase, serta aplikasi mobile dengan Flutter.',
+    'Tampilan yang baik dan sistem yang baik saling menguatkan. Saya merancang antarmuka yang menarik tanpa mengorbankan kesederhanaan sistem: alur yang jelas, performa yang cepat, dan kode yang mudah dikembangkan. Desain saya buat di Figma, lalu saya implementasikan dengan React, Next.js, Laravel, Supabase, dan Flutter.',
   // baris di Personal Details; baris dengan value kosong tidak ditampilkan
   details: [
     { label: 'Name', value: 'Yosi Rahmawan' },

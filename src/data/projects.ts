@@ -7,6 +7,9 @@ export type Project = {
   // gambar tambahan untuk jendela detail; details = paragraf artikel di jendela detail
   gallery?: string[]
   details?: string[]
+  // peran Yosi di project ini dan bagian yang dikerjakan; kosong = blok "My role" tidak tampil
+  role?: string
+  contributions?: string[]
   tech: string[]
   demoUrl?: string
   repoUrl?: string
@@ -29,6 +32,8 @@ export const projects: Project[] = [
       'Tiga peran dalam satu alur: pengembang mengajukan berkas dan memantau status lewat notifikasi, admin Disperwaskim memverifikasi berkas dan menugaskan survey lewat portal web (dashboard pengawasan, antrean pengajuan, ekspor CSV), dan tim lapangan menjalankan survey, mendokumentasikan temuan, lalu menerbitkan Berita Acara.',
       'Aplikasi mobile dibangun dengan Flutter (Riverpod dan GoRouter), Berita Acara dapat dicetak atau dibagikan sebagai PDF, dan portal web admin memakai Laravel. Data di tangkapan layar adalah data contoh.',
     ],
+    role: 'Mobile Developer & UI/UX Designer',
+    contributions: ['Membangun aplikasi mobile secara penuh dengan Flutter', 'Merancang UI/UX aplikasinya'],
     tech: ['Flutter', 'Dart', 'Riverpod', 'Laravel'],
     repoUrl: gh('Satu-rumahv2'),
   },
@@ -44,6 +49,8 @@ export const projects: Project[] = [
       'Ada empat peran: Admin, Kepala Sekolah atau Yayasan, Petugas Keuangan, dan Siswa (orang tua). Pembayaran dan jemputan diinput oleh Petugas Keuangan, pembayaran QRIS dikonfirmasi petugas, dan laporan dapat diekspor sebagai CSV yang dibuka di Excel.',
       'Backend sudah selesai dan teruji (52 tes): login dan role, pengguna dan siswa, tagihan, pembayaran manual dan QRIS, pembatalan, peringatan jatuh tempo, laporan, dan audit log. Database memakai Supabase (PostgreSQL).',
     ],
+    role: 'Frontend Developer & UI/UX Designer',
+    contributions: ['Membangun tampilan web (frontend)', 'Merancang UI/UX'],
     tech: ['Laravel', 'PHP', 'Supabase'],
     repoUrl: gh('Project-SIAPA'),
   },
@@ -59,6 +66,8 @@ export const projects: Project[] = [
       'Task, riwayat, dan lampiran tersimpan di server (SQLite). Halaman Tim & agent menyimpan konfigurasi tiap agent: peran, atasan, model, izin, dan batas sumber daya. Konfigurasi ini belum menjalankan AI, jadi langkah task masih simulasi.',
       'Ada juga AI Affiliate Studio untuk menyusun campaign afiliasi (script, caption, hashtag, storyboard) yang harus disetujui pemilik sebelum dipakai.',
     ],
+    role: 'Full-Stack Developer',
+    contributions: ['Mengerjakan frontend dan backend'],
     tech: ['TypeScript', 'React', 'Fastify', 'SQLite'],
     repoUrl: gh('204-Project-Group'),
   },
@@ -74,6 +83,8 @@ export const projects: Project[] = [
       'Panel admin mengelola data user, data guru, jabatan, kriteria, kompetensi, dan indikator penilaian. Dashboard menampilkan total guru, total penilai, total evidence, total penilaian, rata-rata skor per periode, dan status evaluasi.',
       'Web dibangun dengan Laravel (Blade dan Tailwind CSS), dan repo yang sama memuat aplikasi Flutter (flutter_simpeg_app).',
     ],
+    role: 'UI/UX Designer',
+    contributions: ['Merancang UI/UX'],
     tech: ['Laravel', 'PHP', 'Tailwind CSS', 'Flutter'],
     repoUrl: gh('pkg-web-fresh'),
   },

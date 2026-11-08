@@ -1,6 +1,6 @@
 import { GlassPanel } from '../ui/GlassPanel'
 
-const links = [
+export const links = [
   ['About', '#about'],
   ['Projects', '#projects'],
   ['Journey', '#journey'],

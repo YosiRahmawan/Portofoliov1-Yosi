@@ -72,6 +72,17 @@ export function ProjectViewer({ project, onClose }: { project: Project | null; o
 
             <div className="px-6 pt-2 pb-8 md:px-8">
               <p className="text-white/80">{project.description}</p>
+              {project.role && (
+                <div className="mt-6 rounded-xl border border-white/15 bg-white/5 p-4">
+                  <p className="font-mono text-[11px] tracking-wider text-sky uppercase">My role</p>
+                  <p className="mt-1 font-semibold">{project.role}</p>
+                  {project.contributions && (
+                    <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-white/70">
+                      {project.contributions.map((c) => <li key={c}>{c}</li>)}
+                    </ul>
+                  )}
+                </div>
+              )}
               {project.details?.map((t) => <p key={t} className="mt-4 text-white/70">{t}</p>)}
 
               {shots.length > 1 && (

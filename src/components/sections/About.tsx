@@ -2,12 +2,13 @@ import { useRef } from 'react'
 import { profile } from '../../data/profile'
 import { useReveal } from '../../hooks/useReveal'
 import { Em, SectionTitle } from '../ui/Heading'
+import { ScrollText } from '../ui/ScrollText'
 
 function Block({ title, children }: { title: string; children: string }) {
   return (
     <div data-reveal>
       <h3 className="border-b border-black/15 pb-2 text-sm font-semibold">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-black/70">{children}</p>
+      <ScrollText text={children} className="mt-3 text-sm leading-relaxed text-black/80" />
     </div>
   )
 }
