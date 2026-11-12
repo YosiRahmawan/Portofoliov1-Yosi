@@ -107,3 +107,8 @@ Kontras AA, fokus keyboard terlihat (outline `--sky` 2px), alt text pada gambar,
 ## Teks About dan glow kursor
 - Paragraf di About memakai `ScrollText`: kata samar (opacity 0.18) lalu menyala berurutan mengikuti scroll (GSAP scrub). Reduced motion: teks langsung penuh.
 - Section Projects (tab Projects, Certificates, Tech Stack) dibungkus `GlowZone`: efek React Bits GlowCursor, hanya untuk perangkat dengan mouse dan tanpa reduced motion. Tanpa WebGL2 efeknya diam-diam tidak muncul.
+
+## Journey (zig-zag)
+- Layar lebar: garis di tengah, kartu bergantian kiri dan kanan, angka tahun besar berkontur biru di sisi seberang (parallax pelan). Layar kecil: garis di kiri, kartu satu kolom.
+- Kartu masuk dari sisinya saat di-scroll (GSAP). Saat titiknya menyala, kartu mendapat tepi dan bayangan biru. Periode berisi "Present" otomatis diberi lencana "Ongoing".
+- Semua animasi hanya transform dan opacity; reduced motion mematikan gerak masuk, parallax, dan denyut.

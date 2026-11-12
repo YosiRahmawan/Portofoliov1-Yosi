@@ -18,6 +18,13 @@ export const journey: JourneyItem[] = [
     type: 'education',
   },
   {
+    period: '2023',
+    title: 'Internship (PKL): Computer Technician',
+    place: 'Artec Komputer, Ciamis',
+    description: 'Praktik kerja lapangan sebagai teknisi di Artec Komputer, Ciamis.',
+    type: 'experience',
+  },
+  {
     period: '2024 - Present',
     title: 'Bachelor of Information Systems (semester 5)',
     place: 'Universitas Bina Sarana Informatika (UBSI) Tasikmalaya',

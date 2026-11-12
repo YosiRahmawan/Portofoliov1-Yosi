@@ -1,3 +1,4 @@
+import { journey } from './journey'
 import { projects } from './projects'
 
 const skillGroups: Record<string, string[]> = {
@@ -42,7 +43,7 @@ export const profile = {
   // angka di busur statistik hero
   stats: [
     { value: String(Object.values(skillGroups).flat().length), suffix: '+', label: 'SKILLS' },
-    { value: '2', suffix: '', label: 'INTERNSHIPS' },
+    { value: String(journey.filter((j) => j.type === 'experience').length), suffix: '', label: 'INTERNSHIPS' },
     { value: String(projects.length), suffix: '', label: 'PROJECTS' },
   ],
 }

@@ -13,14 +13,14 @@ const firstSentence = (t: string) => {
 }
 
 const s = StyleSheet.create({
-  page: { padding: 30, fontSize: 9.2, lineHeight: 1.32, color: '#0a0a0a', fontFamily: 'Helvetica' },
+  page: { padding: 28, fontSize: 9, lineHeight: 1.28, color: '#0a0a0a', fontFamily: 'Helvetica' },
   header: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
   name: { fontSize: 24, lineHeight: 1.2, fontFamily: 'Helvetica-Bold', letterSpacing: -0.5 },
   role: { fontSize: 12, color: BLUE, marginTop: 4, marginBottom: 8 },
   contact: { fontSize: 9.5, color: '#333' },
   link: { color: '#333', textDecoration: 'none' },
   photo: { width: 66, height: 82, objectFit: 'cover', objectPosition: '50% 0%' },
-  section: { marginTop: 8 },
+  section: { marginTop: 6 },
   heading: {
     fontFamily: 'Helvetica-Bold',
     fontSize: 10,
@@ -34,7 +34,7 @@ const s = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between' },
   bold: { fontFamily: 'Helvetica-Bold' },
   muted: { color: '#555' },
-  item: { marginBottom: 4 },
+  item: { marginBottom: 3 },
   bullet: { flexDirection: 'row', paddingLeft: 6 },
   dot: { width: 8 },
 })
