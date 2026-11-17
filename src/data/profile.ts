@@ -18,6 +18,8 @@ export const profile = {
   intro: 'Mahasiswa Sistem Informasi yang membangun sistem efisien, mudah dipahami, dan tampil rapi.',
   bio: 'Saya Yosi, mahasiswa Sistem Informasi semester 5 di UBSI Tasikmalaya. Saat ini saya magang di Diskominfo Kota Tasikmalaya, mengerjakan UI/UX, frontend, backend, dan aplikasi mobile. Fokus saya adalah sistem yang efisien dan mudah dipahami pengguna.',
   photo: '/images/profile.jpg',
+  // CV buatan sendiri di public/cv; ganti file itu untuk memperbarui tombol Download CV
+  cv: '/cv/CV-Yosi-Rahmawan.pdf',
   approach:
     'Tampilan yang baik dan sistem yang baik saling menguatkan. Saya merancang antarmuka yang menarik tanpa mengorbankan kesederhanaan sistem: alur yang jelas, performa yang cepat, dan kode yang mudah dikembangkan. Desain saya buat di Figma, lalu saya implementasikan dengan React, Next.js, Laravel, Supabase, dan Flutter.',
   // baris di Personal Details; baris dengan value kosong tidak ditampilkan. Email dan WhatsApp sengaja tidak ditampilkan di web (hanya di CV dan tombol WhatsApp)

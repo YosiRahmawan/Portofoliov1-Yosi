@@ -16,7 +16,7 @@ Tidak ada backend, database, atau router. Site statis satu halaman.
 ```
 PortofolioV1-Yosi/
 ├─ public/
-│  ├─ cv/Yosi-CV.pdf
+│  ├─ cv/CV-Yosi-Rahmawan.pdf
 │  ├─ images/            # foto & screenshot project
 │  └─ favicon.svg
 ├─ src/

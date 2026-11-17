@@ -1,12 +1,18 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { downloadCv } from '../../lib/cv/downloadCv'
+import { profile } from '../../data/profile'
 import { Button } from './Button'
 
 // Efek kaca (WebGL) dimuat belakangan agar tidak menahan render pertama; sebelum itu tombol polos yang berfungsi sama
 const SpecularButton = lazy(() => import('../reactbits/SpecularButton'))
 
+function download() {
+  const a = document.createElement('a')
+  a.href = profile.cv
+  a.download = ''
+  a.click()
+}
+
 export function DownloadCvButton() {
-  const [state, setState] = useState<'idle' | 'loading' | 'error'>('idle')
   const [fancy, setFancy] = useState(false)
 
   useEffect(() => {
@@ -14,28 +20,13 @@ export function DownloadCvButton() {
     return () => clearTimeout(t)
   }, [])
 
-  async function onClick() {
-    setState('loading')
-    try {
-      await downloadCv()
-      setState('idle')
-    } catch {
-      setState('error')
-    }
-  }
-
-  const label = state === 'loading' ? 'Generating CV...' : state === 'error' ? 'Failed, try again' : 'Download CV'
-  const plain = (
-    <Button variant="secondary" onClick={onClick} disabled={state === 'loading'}>
-      {label}
-    </Button>
-  )
+  const plain = <Button variant="secondary" onClick={download}>Download CV</Button>
 
   if (!fancy) return plain
   return (
     <Suspense fallback={plain}>
-      <SpecularButton size="md" radius={24} tintOpacity={0.1} blur={8} textColor="#ffffff" autoAnimate onClick={onClick} disabled={state === 'loading'}>
-        {label}
+      <SpecularButton size="md" radius={24} tintOpacity={0.1} blur={8} textColor="#ffffff" autoAnimate onClick={download}>
+        Download CV
       </SpecularButton>
     </Suspense>
   )

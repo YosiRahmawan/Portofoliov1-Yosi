@@ -24,7 +24,7 @@ Satu halaman (single page) dengan bagian berikut, berurutan:
 
 ## 4. Kebutuhan fungsional
 - Navigasi sticky dengan anchor scroll ke tiap bagian.
-- Tombol download CV membuat PDF otomatis dari data portofolio (`@react-pdf/renderer`, dimuat saat diklik).
+- Tombol download CV mengunduh PDF buatan sendiri di `public/cv/CV-Yosi-Rahmawan.pdf` (ganti file itu untuk memperbarui).
 - Tombol WhatsApp membuka `wa.me/<nomor>` dengan pesan awal yang sudah terisi.
 - Semua tautan sosial membuka tab baru dengan `rel="noopener noreferrer"`.
 - Data project dan timeline dibaca dari file data (`src/data/`), bukan ditulis langsung di komponen.
